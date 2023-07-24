@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #0f0f0f;
+  background-color: #f6f6f63a;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  @apply rounded-t-md bg-transparent;
+}
+.container {
+  margin: 0;
+  padding-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: 0.75s;
+}
+
+.logo.tauri:hover {
+  filter: drop-shadow(0 0 2em #24c8db);
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #396cd8;
+}
+
+#greet-input {
+  margin-right: 5px;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    color: #585858;
+    background-color: #ffffff94;
+    backdrop-filter:blur(20px);
+  }
+
+  a:hover {
+    color: #24c8db;
+  }
+} */
+
+.run-code-modal {
+  @apply !w-[80vw] max-w-[995px] !top-11 !align-top !bg-[#20232a];
+}
+
+.wrapperModal {
+  @apply overflow-hidden;
+}
+.inputhover {
+  @apply focus:appearance-none  focus:leading-5 focus:px-1 focus:py-2 focus:flex-grow;
+}
+.inputhover:focus {
+  box-shadow: inset 0.1em 0.1em 0.2em #99b5d2, inset -0.1em -0.1em 0.2em #fff;
+}
+
+
+
