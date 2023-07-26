@@ -1,10 +1,6 @@
 import { Allotment } from 'allotment'
 import { FlowEditor, builtinNodeDefinition, persist, regNode } from './'
-import React from 'react'
 import { useAppStore } from '../store/app'
-import Sidebar from './components/sidebar/sidebar'
-import SideActions from './components/sidebar/sideaction'
-import SettingsActions from './components/sidebar/edit'
 import { initRegistry, preventDefault } from '../registry/init'
 import { values } from 'lodash-es'
 

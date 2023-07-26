@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+::-webkit-scrollbar-thumb:horizontal{
+  background: #888;
+  border-radius: 2px;
+  height: 5px;
+  
+}
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -9,7 +32,7 @@
   font-weight: 400;
 
   color: #0f0f0f;
-  background-color: #f6f6f63a;
+  background-color: rgb(246, 246, 246);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -22,6 +45,11 @@
 }
 body {
   @apply rounded-t-md bg-transparent;
+  width: 100%;
+  height: 100%;
+}
+#root{
+  width: 100%;
 }
 .container {
   margin: 0;
