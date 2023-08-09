@@ -5,7 +5,7 @@ import { useRegistryStore } from './store';
 const registry = [
   {
     name: 'easemob',
-    label: '环信',
+    label: 'easemob',
     url: './plugins/easemob/index.js',
   },
 ];

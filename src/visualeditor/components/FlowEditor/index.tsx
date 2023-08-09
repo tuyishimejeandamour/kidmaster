@@ -3,7 +3,7 @@ import { Stage, Transformer } from 'react-konva';
 import Konva from 'konva';
 import { GridLayer } from './GridLayer';
 import { useMemoizedFn, useSize } from 'ahooks';
-import { useStageStore } from '../../store/stage';
+import { useStageStore } from '@/visualeditor';
 import { NodeLayer } from './NodeLayer';
 import { ConnectionLayer } from './ConnectionLayer';
 import { ContextMenuWrapper } from '../ContextMenu';
@@ -15,16 +15,13 @@ import {
   setFlowEditorCursorStyle,
 } from '../../utils/pointer-helper';
 import { SelectionLayer } from './SelectionLayer';
-import { useConnectionStore } from '../../store/connection';
+import { useConnectionStore } from '@/visualeditor';
 import { Allotment, LayoutPriority } from 'allotment';
 import Selected from './selected';
-import { HeroLayer } from './HeroLayer';
 import Sidebar from '../sidebar/sidebar';
-import SideActions from '../sidebar/sideaction';
 import SettingsActions from '../sidebar/edit';
-import { useAppStore } from '../../../store/app';
 
-const scaleBy = 1.05; // 缩放系数
+const scaleBy = 1.05;
 
 export const FlowEditor: React.FC = React.memo(() => {
 
@@ -99,7 +96,6 @@ export const FlowEditor: React.FC = React.memo(() => {
                 <NodeLayer />
                 <ConnectionLayer />
                 <SelectionLayer />
-                {/* <HeroLayer /> */}
               </Stage>
             </ContextMenuWrapper>
           <div className=" absolute  right-4 min-w-[6rem]  top-1">
@@ -113,15 +109,12 @@ export const FlowEditor: React.FC = React.memo(() => {
           </Allotment.Pane>
         </Allotment>
 
-
       </Allotment.Pane>
       <Allotment.Pane priority={LayoutPriority.Low} snap={true} maxSize={showSideEditor ? 305 : 0} minSize={showSideEditor ? 305 : 0}>
         <div className=" bg-transparent h-full overflow-auto">
           <Selected />
         </div>
       </Allotment.Pane>
-
-
     </Allotment>
   );
 });

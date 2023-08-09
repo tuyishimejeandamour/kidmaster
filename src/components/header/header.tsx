@@ -9,7 +9,7 @@ interface IProps {
 }
 function Header() {
 
-    const { activespace, setActiveSpace } = useUIStore()
+    const { activeSpace, setActiveSpace } = useUIStore()
     const { showSidebar, onDashboard, setOnDashboard, setshowSidebar } = useAppStore()
     const { compareOS } = useOSInfo()
 
@@ -50,10 +50,10 @@ function Header() {
                                     {`Titlebar`}
                                     <span className="text-[11px]">{' / '}</span>
                                     <span onClick={handleFunctionClick} className="text-blue-300 text-sm cursor-pointer">{"main"}</span>
-                                    {activespace.name !== "main" ? (
+                                    {activeSpace.name !== "main" ? (
                                         <>
                                             <span className="text-[11px]">{' / '}</span>
-                                            <span className="text-blue-300 text-sm cursor-pointer">{activespace.name}</span>
+                                            <span className="text-blue-300 text-sm cursor-pointer">{activeSpace.name}</span>
                                         </>
                                     ) : null
                                     }

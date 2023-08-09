@@ -1,9 +1,6 @@
-import { useState } from "react";
-import { useNodes } from "../../../hooks/useNodes";
+import { useNodes } from "@/hooks/useNodes";
 import { useUIStore } from "../..";
 import { entries, groupBy } from "lodash-es";
-
-
 
 export default function SidebarHeader() {
     const { search, searchValue,matchedNode } = useNodes()

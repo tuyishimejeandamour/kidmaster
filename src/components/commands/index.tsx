@@ -4,29 +4,29 @@ import selectNode from './select';
 import { useNodes } from '../../hooks/useNodes';
 
 const CommandPanel: React.FC = () => {
-    const { openCommand, openComandModal,setGroupCommand } = useUIStore()
+    const { openCommand, openCommandModal,setGroupCommand } = useUIStore()
     // const {handleCreateNode} = useNodes()
 
     const handleKeys = async (ev: KeyboardEvent) => {
         ev.preventDefault()
         if (ev.ctrlKey && ev.shiftKey && ev.key == "P") {
             setGroupCommand("variable")
-            openComandModal(true)
+            openCommandModal(true)
             const data = await selectNode()
-            openComandModal(false)
+            openCommandModal(false)
            
         } 
         else {
             if (ev.ctrlKey && !ev.shiftKey && ev.key == "p") {
                 setGroupCommand("action")
-                openComandModal(true)
+                openCommandModal(true)
                 const data = await selectNode()
-                openComandModal(false)
+                openCommandModal(false)
             }
 
 
             if (ev.key == "Escape") {
-                openComandModal(false)
+                openCommandModal(false)
             }
         }
 

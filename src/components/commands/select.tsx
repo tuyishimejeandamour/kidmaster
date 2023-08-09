@@ -19,19 +19,19 @@ interface IModalChoose {
 function ConfirmModal({ selectedNode, onCancel, toReturn, onFunction, onValue }: IModalChoose) {
 
     const { search, searchValue, handleCreateNode } = useNodes()
-    const { openComandModal, groupCommand, setGroupCommand } = useUIStore()
+    const { openCommandModal, groupCommand, setGroupCommand } = useUIStore()
     const [showShadow, setShowShadow] = useState(false)
 
     const handleClick = (event: MouseEvent) => {
         if ((event.composedPath()[event.composedPath().length - 6] as HTMLElement).id != "commands" &&
             !((event.composedPath()[event.composedPath().length - 6] as HTMLElement).attributes["trigger-placement" as any])) {
 
-            openComandModal(false)
+            openCommandModal(false)
         }
 
     }
     const handleNodeClick = (nodeName: string, data?: Record<string, any>) => {
-        openComandModal(false)
+        openCommandModal(false)
         if (toReturn) {
             selectedNode(nodeName, data);
             return
@@ -39,7 +39,7 @@ function ConfirmModal({ selectedNode, onCancel, toReturn, onFunction, onValue }:
         handleCreateNode(nodeName, data)
     }
     const handleFunctionClick = () => {
-        openComandModal(false)
+        openCommandModal(false)
     }
     const handleKey = (ev: KeyboardEvent) => {
 

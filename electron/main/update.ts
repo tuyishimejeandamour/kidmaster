@@ -69,5 +69,5 @@ function startDownload(
   autoUpdater.on('download-progress', info => callback(null, info))
   autoUpdater.on('error', error => callback(error, null))
   autoUpdater.on('update-downloaded', complete)
-  autoUpdater.downloadUpdate()
+  autoUpdater.downloadUpdate().then(r => console.log(r))
 }

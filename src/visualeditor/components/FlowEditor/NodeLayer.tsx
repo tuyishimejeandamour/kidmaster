@@ -6,7 +6,7 @@ import { useUIStore } from '../../store/ui';
 
 export const NodeLayer: React.FC = React.memo(() => {
   const { nodeMap, nodeDefinition } = useNodeStore();
-  const { activespace } = useUIStore()
+  const { activeSpace } = useUIStore()
 
   return (
     <Layer
@@ -20,14 +20,14 @@ export const NodeLayer: React.FC = React.memo(() => {
 
           return null;
         }
-        if(activespace.space === "group"){
-          if(node.space === activespace.name ){
+        if(activeSpace.space === "group"){
+          if(node.space === activeSpace.name ){
             const component = def.component;
             return React.createElement(component, { key: node.id, id: node.id });
           }
          return null
          
-        }else if(activespace.space === "main" && (node.space === "main" || typeof node.space == "undefined")){
+        }else if(activeSpace.space === "main" && (node.space === "main" || typeof node.space == "undefined")){
           const component = def.component;
 
           return React.createElement(component, { key: node.id, id: node.id });

@@ -8,7 +8,7 @@ import { useNodeStore, useStageStore, useUIStore, useVariableStore } from "../vi
 
 export function useNodes() {
     const { nodeDefinition, createNode } = useNodeStore();
-    const {searchValue,activespace, search:setSearchValue} = useUIStore();
+    const {searchValue,activeSpace, search:setSearchValue} = useUIStore();
     const {nodeMap} = useNodeStore()
     const { getRelativePointerPosition } = useStageStore();
     const { variableMap } = useVariableStore();

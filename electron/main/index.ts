@@ -2,7 +2,6 @@ import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import { release } from 'node:os'
 import { join } from 'node:path'
 import { update } from './update'
-import MenuBuilder from './menu'
 
 process.env.DIST_ELECTRON = join(__dirname, '../')
 process.env.DIST = join(process.env.DIST_ELECTRON, '../dist')
@@ -50,10 +49,7 @@ async function createWindow() {
   } else {
     win.loadFile(indexHtml)
   }
-
-  const menuBuilder = new MenuBuilder(win);
-  menuBuilder.buildMenu();
-
+  win.setMenu(null)
   // Test actively push message to the Electron-Renderer
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', new Date().toLocaleString())

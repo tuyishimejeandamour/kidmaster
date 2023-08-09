@@ -4,7 +4,7 @@ import React, {
 import { Message, Trigger } from '@arco-design/web-react';
 import { clipboard } from 'electron';
 
-import { useConnectionStore } from '../store/connection';
+import { useConnectionStore } from '@/visualeditor';
 import { GroupCommands, useUIStore } from '../store/ui';
 import selectNode from '../../components/commands/select';
 import { useNodeInfo } from '../hooks/useNodeInfo';
@@ -13,23 +13,23 @@ import { useNodeStore } from '../store/node';
 
 const ContextMenu: React.FC = React.memo(() => {
 
-  const { selectedNodeIds, showSideEditor,setActiveSpace, contextMenu, setShowSideEditor, deleteAllSelected, setshowPopup, openComandModal, setGroupCommand } = useUIStore()
+  const { selectedNodeIds, showSideEditor,setActiveSpace, contextMenu, setShowSideEditor, deleteAllSelected, setShowPopup, openCommandModal, setGroupCommand } = useUIStore()
   const data = useNodeInfo(selectedNodeIds[0])
   const { createNode, resetNode } = useNodeStore()
 
 
   const handleCreateNode = async (action: GroupCommands = "action") => {
-    setshowPopup(false)
+    setShowPopup(false)
     setGroupCommand(action)
-    openComandModal(true)
+    openCommandModal(true)
     await selectNode()
-    openComandModal(false)
+    openCommandModal(false)
   }
   const handleCopyNode = async () => {
-    setshowPopup(false)
+    setShowPopup(false)
     if (data.definition && data.node) {
       const node = JSON.stringify({ name: data.definition?.name, position: data.node?.position, data: data.node?.data })
-      await clipboard.writeText(node)
+      clipboard.writeText(node)
       Message.success("copied")
       return
     }
@@ -37,8 +37,8 @@ const ContextMenu: React.FC = React.memo(() => {
   }
 
   const pasteNode = async () => {
-    setshowPopup(false)
-    const nodeInfo = JSON.parse(await clipboard.readText() as string)
+    setShowPopup(false)
+    const nodeInfo = JSON.parse(clipboard.readText() as string)
     if (nodeInfo) {
       createNode(nodeInfo.name, nodeInfo.position, nodeInfo.data)
       return
@@ -47,12 +47,12 @@ const ContextMenu: React.FC = React.memo(() => {
   }
 
   const handleDelNode = () => {
-    setshowPopup(false)
+    setShowPopup(false)
     deleteAllSelected();
     return
   }
   const handleDelAll = async () => {
-    setshowPopup(false)
+    setShowPopup(false)
     const nodeInfo = await confirm("Do you want to Delete All Nodes")
     if (nodeInfo) {
       resetNode();
@@ -74,7 +74,7 @@ const ContextMenu: React.FC = React.memo(() => {
             {
               selectedNodeIds[0] && selectedNodeIds[0].includes("group") && (
                 <li className='w-full bg-transparent select-none h-7 px-1 rounded-md flex items-center hover:cursor-pointer hover:bg-gray-300/50 ' onClick={() => {
-                  setshowPopup(false)
+                  setShowPopup(false)
                   setActiveSpace('group',selectedNodeIds[0])
   
                 }}>
@@ -90,7 +90,7 @@ const ContextMenu: React.FC = React.memo(() => {
             {
               !showSideEditor &&
               <li className='w-full bg-transparent select-none h-7 px-1 rounded-md flex items-center hover:cursor-pointer hover:bg-gray-300/50 ' onClick={() => {
-                setshowPopup(false)
+                setShowPopup(false)
                 setShowSideEditor(true)
 
               }}>
@@ -217,7 +217,7 @@ export const ContextMenuWrapper = React.forwardRef<
   HTMLDivElement,
   ContextMenuWrapperProps
 >((props, ref) => {
-  const { showPopup, setshowPopup, setContextMenu } = useUIStore()
+  const { showPopup, setShowPopup, setContextMenu } = useUIStore()
   const workingConnection = useConnectionStore(
     (state) => state.workingConnection
   );
@@ -230,7 +230,7 @@ export const ContextMenuWrapper = React.forwardRef<
       escToClose={true}
       popupVisible={showPopup}
       onVisibleChange={(v) => {
-        setshowPopup(v)
+        setShowPopup(v)
       }
       }
 

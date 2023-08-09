@@ -228,7 +228,7 @@ export const useNodeStore = create<NodeState>()(
     },
     createNode: (nodeName, position, data) => {
       set((state) => {
-        const activespace = useUIStore.getState().activespace
+        const activespace = useUIStore.getState().activeSpace
         let id = generateNodeId();
         if (nodeName === "group") {
           id = `group_${id}`

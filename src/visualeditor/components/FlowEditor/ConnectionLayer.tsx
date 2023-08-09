@@ -71,7 +71,7 @@ export const ConnectionLayer: React.FC = React.memo(() => {
     useConnectionStore();
   const { getRelativePointerPosition } = useStageStore();
   useNodeStore(); // 这只是为了确保node位置更新了这个layer也能被渲染
-  const { selectedConnectionIds, activespace } = useUIStore();
+  const { selectedConnectionIds, activeSpace } = useUIStore();
 
   const updateDraw = useUpdate();
 
@@ -153,7 +153,7 @@ export const ConnectionLayer: React.FC = React.memo(() => {
           // console.warn('Connection info not found', connection);
           return null;
         }
-        if (activespace.space === "group" && activespace.name === connection.space) {
+        if (activeSpace.space === "group" && activeSpace.name === connection.space) {
           return (
             <Connection
               key={connection.id}
@@ -175,7 +175,7 @@ export const ConnectionLayer: React.FC = React.memo(() => {
 
         }
 
-        if (activespace.space === "main" && (connection.space === "main" || typeof connection.space == "undefined")) {
+        if (activeSpace.space === "main" && (connection.space === "main" || typeof connection.space == "undefined")) {
           return (
             <Connection
               key={connection.id}

@@ -165,7 +165,7 @@ export const useConnectionStore = create<ConnectionState>()(
                 id: generateNodeId(),
                 fromNodeId: fromNodeId,
                 fromNodePinName: fromNodePinName,
-                space: useUIStore.getState().activespace.name,
+                space: useUIStore.getState().activeSpace.name,
                 toNodeId: toNodeId,
                 toNodePinName: toNodePinName,
               }
@@ -174,7 +174,7 @@ export const useConnectionStore = create<ConnectionState>()(
                 fromNodeId: toNodeId,
                 fromNodePinName: toNodePinName,
                 toNodeId: fromNodeId,
-                space: useUIStore.getState().activespace.name,
+                space: useUIStore.getState().activeSpace.name,
                 toNodePinName: fromNodePinName,
               }
         );

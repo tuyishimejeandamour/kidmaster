@@ -1,7 +1,7 @@
 import React from 'react'
 import Action from '../../../components/button/action'
-import { usePersist } from '../../../hooks/usePersit';
-import { useAppStore } from '../../../store/app';
+import { usePersist } from '@/hooks/usePersit';
+import { useAppStore } from '@/store/app';
 
 
 export default function SideActions() {

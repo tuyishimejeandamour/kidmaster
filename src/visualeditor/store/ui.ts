@@ -3,8 +3,6 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { useConnectionStore } from './connection';
 import { useNodeStore } from './node';
-import { type } from 'os';
-
 
 export type GroupCommands = "function" | "variable" | "action"
 export type Space = "function" | "group" | "main";
@@ -16,13 +14,14 @@ export interface ActiveSpace{
 interface UIState {
   selectedNodeIds: string[];
   selectedConnectionIds: string[];
+  showBluetoothDevices: boolean;
   openCommand: boolean;
   showSideEditor: boolean;
   activeCategory:string;
   groupCommand: GroupCommands;
   showPopup:boolean;
   searchValue:string;
-  activespace:ActiveSpace;
+  activeSpace:ActiveSpace;
   contextMenu:ContextMenu
   search: (value:string) => void;
 
@@ -42,13 +41,14 @@ interface UIState {
    * 移动所有选中
    */
   moveSelected: (deltaX: number, deltaY: number) => void;
-  openComandModal: (state: boolean,ref?:any) => void;
+  openCommandModal: (state: boolean, ref?:any) => void;
   setShowSideEditor: (state: boolean) => void;
   setGroupCommand:(group:GroupCommands)=>void;
-  setshowPopup: (state:boolean) => void;
+  setShowPopup: (state:boolean) => void;
   setContextMenu: (state:ContextMenu) => void
   setActiveSpace:(space:Space,name:string) => void;
   setActiveCategory:(category:string) => void;
+  setShowBluetoothDevices: (state: boolean) => void;
 }
 
 export const useUIStore = create<UIState>()(
@@ -56,13 +56,14 @@ export const useUIStore = create<UIState>()(
     selectedNodeIds: [] as string[],
     selectedConnectionIds: [] as string[],
     openCommand: false,
-    showSideEditor: window.innerWidth < 700 ? true : false,
+    showSideEditor: window.innerWidth < 700,
     groupCommand:'action',
     showPopup:false,
     searchValue:"",
     activeCategory:"all",
-    activespace:{space:'main',name: "main"},
+    activeSpace:{space:'main',name: "main"},
     contextMenu:"stage",
+    showBluetoothDevices: false,
     addSelectedNodes: (nodeIds) => {
       set((state) => {
         state.selectedNodeIds = uniq([...state.selectedNodeIds, ...nodeIds]);
@@ -124,7 +125,7 @@ export const useUIStore = create<UIState>()(
         useNodeStore.getState().moveNode(nodeId, deltaX, deltaY);
       });
     },
-    openComandModal: (open: boolean) => {
+    openCommandModal: (open: boolean) => {
       set((state) => {
         state.openCommand = open
       })
@@ -139,7 +140,7 @@ export const useUIStore = create<UIState>()(
         state.groupCommand = group
       })
     },
-    setshowPopup: (open:boolean) => {
+    setShowPopup: (open:boolean) => {
       set((state) => {
         state.showPopup = open
       })
@@ -156,13 +157,18 @@ export const useUIStore = create<UIState>()(
     },
     setActiveSpace: (space:Space,name:string) => {
       set((state)=> {
-        state.activespace = {space,name}
+        state.activeSpace = {space,name}
       })
     },
     setActiveCategory: (category:string) => {
       set((state)=> {
         state.activeCategory = category
       })
+    },
+    setShowBluetoothDevices: (show: boolean) => {
+        set((state) => {
+            state.showBluetoothDevices = show;
+        })
     }
   }))
 );
