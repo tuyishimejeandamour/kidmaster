@@ -1,10 +1,10 @@
 import React from 'react'
-import { useNodes } from '../../hooks/useNodes'
+import { useNodes } from '@/hooks/useNodes'
 import { entries, groupBy } from 'lodash-es'
 import Highlighter from 'react-highlight-words'
-import { Icons } from '../../visualeditor/utils/icons'
+import { Icons } from '@/visualeditor/utils/icons'
 
-const  ActionsComands:React.FC<{onNodeClick:(Nodename:string) => void}> = React.memo(({onNodeClick}) => {
+const  ActionsCommands:React.FC<{onNodeClick:(Nodename:string) => void}> = React.memo(({onNodeClick}) => {
     const { searchValue, matchedNode } = useNodes()
     const handleNodeClick = (data:string)=>{
             onNodeClick(data)
@@ -59,4 +59,4 @@ const  ActionsComands:React.FC<{onNodeClick:(Nodename:string) => void}> = React.
 }
 )
 
-export default ActionsComands
+export default ActionsCommands

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -12,7 +12,7 @@
 
 ::-webkit-scrollbar-thumb {
   background: #888;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -105,7 +105,7 @@ button:hover {
 } */
 
 .run-code-modal {
-  @apply !w-[80vw] max-w-[995px] !top-11 !align-top !bg-[#20232a];
+  @apply !w-[80vw] max-w-[995px] max-h-[calc(100vh-60px)] !top-11 !align-top !bg-[#20232a];
 }
 
 .wrapperModal {

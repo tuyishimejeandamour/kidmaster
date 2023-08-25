@@ -6,10 +6,10 @@ import { useAppStore } from '@/store/app';
 
 export default function SideActions() {
     const {save} = usePersist()
-    const {setActiveSection,setshowSidebar} =useAppStore()
+    const {setActiveSection,setShowSidebar} =useAppStore()
     const handleClick = (id:string)=>{
         setActiveSection(id)
-        setshowSidebar(true)
+        setShowSidebar(true)
     }
     return (
         <div role="tablist" className="flex flex-col rounded-lg py-2 bg-white/5 backdrop-blur-xl items-center shadow-sm shadow-slate-400/25" data-focuszone-id="FocusZone38">

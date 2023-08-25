@@ -7,9 +7,8 @@ import styled from 'styled-components';
 import { NodeInputBaseHtml } from './BaseHtml';
 
 const SuperSelect = styled(Select)({
-  height: 16,
+  Height: 16,
   display: 'block',
-
   '.arco-select-view': {
     height: '32px !important',
     lineHeight: '14px !important',

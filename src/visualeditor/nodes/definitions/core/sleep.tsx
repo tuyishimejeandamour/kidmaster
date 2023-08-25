@@ -38,7 +38,7 @@ export const SleepNodeDefinition: CodeckNodeDefinition = {
   code: ({ node, getConnectionInput, getConnectionExecOutput }) => {
     const ms = getConnectionInput('ms') ?? node.data?.ms ?? 0;
     const cb =
-      getConnectionExecOutput('cb')?.trim().split('\n').join('\n  ') ?? ''; // 为了确保有合适的缩进
+      getConnectionExecOutput('cb')?.trim().split('\n').join('\n  ') ?? '';
 
     return `window.setTimeout(() => {
   ${cb}

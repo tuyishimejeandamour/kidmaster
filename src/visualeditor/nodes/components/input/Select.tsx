@@ -1,19 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Html } from 'react-konva-utils';
 import { NodeInputBase, NodeInputProps } from './Base';
-import { Select } from '@arco-design/web-react';
 
-import styled from 'styled-components';
-
-const SuperMiniSelect = styled(Select)({
-  height: 16,
-  display: 'block',
-
-  '.arco-select-view': {
-    height: '16px !important',
-    lineHeight: '14px !important',
-  },
-});
 
 const optionStyle: React.CSSProperties = {
   height: 16,
@@ -27,39 +15,31 @@ export interface NodeInputSelectProps extends NodeInputProps {
 export const NodeInputSelect: React.FC<NodeInputSelectProps> = React.memo(
   (props) => {
     const { options, ...others } = props;
-    const [popupVisible, setPopupVisible] = useState(false);
-
     return (
       <NodeInputBase
         {...others}
         renderEditor={({ width, height, value, setValue, handleBlur }) => (
           <Html>
-            <SuperMiniSelect
-              ref={() => {
-                setPopupVisible(true);
-              }}
+            <select
               style={{
                 width,
                 height,
               }}
-              size="mini"
-              popupVisible={popupVisible}
-              onVisibleChange={setPopupVisible}
               placeholder={value}
               value={value}
               onChange={(value: any) => setValue(value)}
               onBlur={handleBlur}
             >
               {options.map((opt, i) => (
-                <Select.Option
+                <option
                   key={`${i}-${opt.value}`}
                   value={opt.value}
                   style={optionStyle}
                 >
                   {opt.label}
-                </Select.Option>
+                </option>
               ))}
-            </SuperMiniSelect>
+            </select>
           </Html>
         )}
       />

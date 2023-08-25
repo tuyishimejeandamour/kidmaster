@@ -16,12 +16,12 @@ import 'allotment/dist/style.css';
 
 
 function App() {
-  const { showSidebar, setshowSidebar } = useAppStore()
+  const { showSidebar, setShowSidebar } = useAppStore()
 
   const handleKeyPress = (event: KeyboardEvent) => {
     event.preventDefault()
     if (event.ctrlKey && event.key == "b") {
-      setshowSidebar(!showSidebar)
+      setShowSidebar(!showSidebar)
     }
   }
   useEffect(() => {

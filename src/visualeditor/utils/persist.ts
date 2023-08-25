@@ -1,8 +1,7 @@
 /**
  * 存档管理
  */
-import { appDataDir, join } from '@tauri-apps/api/path';
-import { convertFileSrc } from '@tauri-apps/api/tauri';
+
 import { useMemo } from 'react';
 import { ConnectInfo, useConnectionStore } from '../store/connection';
 import { CodeckNode, useNodeStore } from '../store/node';

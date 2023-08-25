@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { useUIStore } from '../../visualeditor';
+import React, { useEffect } from 'react'
+import { useUIStore } from '@/visualeditor';
 import selectNode from './select';
-import { useNodes } from '../../hooks/useNodes';
 
 const CommandPanel: React.FC = () => {
     const { openCommand, openCommandModal,setGroupCommand } = useUIStore()

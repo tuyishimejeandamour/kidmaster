@@ -76,7 +76,7 @@ export class CodeCompiler {
           return this.buildPinVarName(pinName, nodeId ?? node.id);
         };
 
-        if (this.printComment === true) {
+        if (this.printComment) {
           codeText += `// ${node.id} (node: ${definition.name})\n`;
         }
 
@@ -236,7 +236,7 @@ export class CodeCompiler {
                 .join('\n');
             } else {
               // esmodule
-              if (this.useSkypack === true) {
+              if (this.useSkypack) {
                 module = `https://cdn.skypack.dev/${module}`;
               }
 

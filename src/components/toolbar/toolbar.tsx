@@ -1,8 +1,8 @@
-import { Message } from "@arco-design/web-react";
+import { toast as Message } from "react-toastify";
 import { useMemoizedFn } from "ahooks";
 import Konva from "konva";
 import { useEffect, useRef } from "react";
-import { useNodeStore, useStageStore } from "../../visualeditor";
+import { useNodeStore, useStageStore } from "@/visualeditor";
 
 function Toolbar() {
   const nodeCreatedPosRef = useRef<Konva.Vector2d | null>(null);

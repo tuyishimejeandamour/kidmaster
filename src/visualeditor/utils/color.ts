@@ -31,10 +31,13 @@ export const color : IColor = {
       end: '#fadae9',
     },
     variable: {
-      start:"#fff",
-      end:"#dee"
+      start: "#fff",
+      end: "#dee"
+    },
+    grouping: {
+      start: "#fff",
+      end: "#dee"
     }
-    
   },
   text: '#000',
   variable: {
@@ -46,10 +49,10 @@ export const color : IColor = {
   },
   node: {
     begin: '#e17055',
-    end: '#e17055',
     function: '#2f5e7e',
     logic: '#6c5ce7',
     call: '#00b894',
     return: '#b11860',
+    grouping: "#6412cc"
   },
 };

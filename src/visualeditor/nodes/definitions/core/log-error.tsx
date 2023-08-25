@@ -5,7 +5,7 @@ import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
 import { buildNodeHeight, defaultNodeWidth } from '../../../utils/size-helper';
 import { standard } from '../../..';
 
-const width = defaultNodeWidth;
+const width = defaultNodeWidth+20;
 const height = buildNodeHeight(3);
 
 export const LogErrorNodeDefinition: CodeckNodeDefinition = {

@@ -1,4 +1,4 @@
-import { Message } from '@arco-design/web-react';
+import {  } from '@arco-design/web-react';
 import { useMemoizedFn } from 'ahooks';
 import { persist } from '../visualeditor';
 import { useLayoutEffect, useState } from 'react';
@@ -46,7 +46,8 @@ export function usePersist() {
 
   const saveAs = useMemoizedFn(() => {
     const raw = JSON.stringify(persist.getCurrentData());
-    const blob = new Blob([raw], { type: 'text/plain;charset=utf-8' });
+    console.log(raw);
+    //const blob = new Blob([raw], { type: 'text/plain;charset=utf-8' });
     // FileSaver.saveAs(blob, `codeck-${Date.now()}.codeck`);
   });
 

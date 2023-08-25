@@ -1,8 +1,8 @@
 import React from 'react';
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeckNodeDefinition } from '@/visualeditor';
 import { BaseNode } from '../../BaseNode';
 import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
-import { buildNodeHeight } from '../../../utils/size-helper';
+import { buildNodeHeight } from '@/visualeditor';
 import { standard } from '../../..';
 
 const width = 180;

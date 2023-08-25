@@ -1,15 +1,14 @@
-import { Message } from "@arco-design/web-react";
+import { toast as Message } from "react-toastify";
 import { useMemoizedFn } from "ahooks";
 import Fuse from "fuse.js";
 import Konva from "konva";
 import { values, keys } from "lodash-es";
-import { useState, useRef, useEffect, useMemo } from "react";
-import { useNodeStore, useStageStore, useUIStore, useVariableStore } from "../visualeditor";
+import { useRef, useEffect, useMemo } from "react";
+import { useNodeStore, useStageStore, useUIStore, useVariableStore } from "@/visualeditor";
 
 export function useNodes() {
     const { nodeDefinition, createNode } = useNodeStore();
     const {searchValue,activeSpace, search:setSearchValue} = useUIStore();
-    const {nodeMap} = useNodeStore()
     const { getRelativePointerPosition } = useStageStore();
     const { variableMap } = useVariableStore();
     const nodeCreatedPosRef = useRef<Konva.Vector2d | null>(null);

@@ -22,7 +22,7 @@ export const SelectionLayer: React.FC = React.memo(() => {
         return;
       }
 
-      if (stage.draggable() === true) {
+      if (stage.draggable()) {
         return;
       }
 

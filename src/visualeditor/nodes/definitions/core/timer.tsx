@@ -4,7 +4,7 @@ import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
 import { buildNodeHeight } from '../../../utils/size-helper';
 import { BaseNode } from '../../BaseNode';
 
-const width = 200;
+const width = 180;
 const height = buildNodeHeight(4);
 
 export const TimerNodeDefinition: CodeckNodeDefinition = {

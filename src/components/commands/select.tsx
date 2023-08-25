@@ -1,11 +1,10 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { useNodes } from '../../hooks/useNodes';
-import { useUIStore } from '../../visualeditor';
-import ActionsComands from './actions';
-import VariableComands from './variable';
-import FunctionsComands from './function';
-import { useScroll } from 'ahooks';
+import { useNodes } from '@/hooks/useNodes';
+import { useUIStore } from '@/visualeditor';
+import ActionsCommands from './actions';
+import VariableCommands from './variable';
+import FunctionsCommands from './function';
 
 
 interface IModalChoose {
@@ -54,10 +53,11 @@ function ConfirmModal({ selectedNode, onCancel, toReturn, onFunction, onValue }:
         } else if (ev.target.value[0] === '>') {
             setGroupCommand('variable')
         } else {
-            search(ev.target.value)
+                search(ev.target.value)
+
         }
     }
-    const handlebackspace = (ev: KeyboardEvent) => {
+    const handleBackspace = (ev: KeyboardEvent) => {
         ev.stopPropagation()
         if (ev.key === "Backspace" && searchValue.length === 0) {
             setGroupCommand('action')
@@ -68,7 +68,6 @@ function ConfirmModal({ selectedNode, onCancel, toReturn, onFunction, onValue }:
 
     }
     const handleContainerScroll = () => {
-        console.log("he")
         setShowShadow(true)
     }
 
@@ -128,7 +127,7 @@ function ConfirmModal({ selectedNode, onCancel, toReturn, onFunction, onValue }:
                                             placeholder={`Search ${groupCommand === "action" ? "actions" : groupCommand == "variable" ? "variables" : "functions"} by name `} name='command'
                                             value={searchValue}
                                             onChange={(e) => handleSearch(e)}
-                                            onKeyDown={(e) => handlebackspace(e as unknown as KeyboardEvent)}
+                                            onKeyDown={(e) => handleBackspace(e as unknown as KeyboardEvent)}
 
                                         />
                                     </div>
@@ -147,13 +146,13 @@ function ConfirmModal({ selectedNode, onCancel, toReturn, onFunction, onValue }:
                     <div id="commandTap" className="relative overflow-hidden min-h-[200px] py-0 px-2 h-full groupCommand-none whitespace-nowrap " role="presentation">
                         {showShadow && <div className='h-[1px] w-full' id='shadowDiv' style={{ boxShadow: "0 0 8px 2px #14151abd" }} />}
                         {
-                            groupCommand === "action" && <ActionsComands onNodeClick={handleNodeClick} />
+                            groupCommand === "action" && <ActionsCommands onNodeClick={handleNodeClick} />
                         }
                         {
-                            groupCommand === "variable" && <VariableComands onNodeClick={handleNodeClick} />
+                            groupCommand === "variable" && <VariableCommands onNodeClick={handleNodeClick} />
                         }
                         {
-                            groupCommand === "function" && <FunctionsComands onNodeClick={handleFunctionClick} />
+                            groupCommand === "function" && <FunctionsCommands onNodeClick={handleFunctionClick} />
                         }
                     </div>
                 </div>

@@ -7,7 +7,7 @@ interface AppState {
     showSidebar:boolean
     setOnDashboard:(state:boolean) => void;
     setActiveSection:(state:string) => void;
-    setshowSidebar:(state:boolean) => void;
+    setShowSidebar:(state:boolean) => void;
  
 }
 
@@ -26,7 +26,7 @@ export const useAppStore = create<AppState>()(
             state.activeSection = value
         })
     },
-    setshowSidebar: (value:boolean) => {
+    setShowSidebar: (value:boolean) => {
         set((state) => {
             state.showSidebar = value
         })

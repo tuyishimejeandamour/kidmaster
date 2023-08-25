@@ -1,10 +1,9 @@
 // import {BrowserWindow as appWindow} from 'electron'
 import { openRunCodeModal } from '../modal/modal'
 import { useMemoizedFn } from 'ahooks';
-import { CodeCompiler } from '../../visualeditor';
-import { usePersist } from '../../hooks/usePersit';
-import { useAppStore } from '../../store/app';
-import { useEffect, useState } from 'react';
+import { CodeCompiler } from '@/visualeditor';
+import { usePersist } from '@/hooks/usePersit';
+import { useAppStore } from '@/store/app';
 
 function Actions() {
   const isInElectron = window.Electron
@@ -13,26 +12,24 @@ function Actions() {
     compiler.useSkypack = true;
     openRunCodeModal(compiler.generate());
   });
-  const [maxmized, setmaxmized] = useState(false)
   const { open } = usePersist()
-  const { onDashboard } = useAppStore()
+  const {onDashboard: onDashboard} = useAppStore()
 
   return (
-    <div className='flex z-50'>
+
+    <div className='flex z-50' >
       <div className={`flex h-11 items-center ${!isInElectron ? "mr-4" : ""}`}>
-        {
-          !onDashboard && (
-            <>
+          {
+              !onDashboard && (
+          <>
               <div className="flex justify-center items-center bg-[#2b303b] h-8 mr-3 w-11 rounded-md shadow-md  text-xs text-white hover:cursor-pointer hover:border-transparent" onClick={open}>
                 <svg className='h-4 w-4 fill-white' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.5858L16.2426 16.8284L14.8284 18.2426L13 16.415V22H11V16.413L9.17157 18.2426L7.75736 16.8284L12 12.5858ZM12 2C15.5934 2 18.5544 4.70761 18.9541 8.19395C21.2858 8.83154 23 10.9656 23 13.5C23 16.3688 20.8036 18.7246 18.0006 18.9776L18.0009 16.9644C19.6966 16.7214 21 15.2629 21 13.5C21 11.567 19.433 10 17.5 10C17.2912 10 17.0867 10.0183 16.8887 10.054C16.9616 9.7142 17 9.36158 17 9C17 6.23858 14.7614 4 12 4C9.23858 4 7 6.23858 7 9C7 9.36158 7.03838 9.7142 7.11205 10.0533C6.91331 10.0183 6.70879 10 6.5 10C4.567 10 3 11.567 3 13.5C3 15.2003 4.21241 16.6174 5.81986 16.934L6.00005 16.9646L6.00039 18.9776C3.19696 18.7252 1 16.3692 1 13.5C1 10.9656 2.71424 8.83154 5.04648 8.19411C5.44561 4.70761 8.40661 2 12 2Z"></path></svg>
               </div>
               <div onClick={handleRun} className="flex  justify-center items-center bg-blue-500 h-8 w-11 rounded-lg text-sm shadow-sm shadow-blue-700 text-white hover:border-transparent hover:cursor-pointer">
                 <svg className='h-4 w-4' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><polygon style={{ borderRadius: 2 }} points="5 3 19 12 5 21 5 3"></polygon></svg>
               </div>
-            </>
-
-          )
-        }
+          </>
+        )}
       </div>
       {/* {
         isInElectron &&

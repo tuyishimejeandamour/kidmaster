@@ -1,7 +1,7 @@
 import { standard } from '../../..';
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeckNodeDefinition } from '@/visualeditor';
 import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
-import { buildNodeHeight, defaultNodeWidth } from '../../../utils/size-helper';
+import { buildNodeHeight, defaultNodeWidth } from '@/visualeditor';
 import { BaseNode } from '../../BaseNode';
 
 const width = defaultNodeWidth;

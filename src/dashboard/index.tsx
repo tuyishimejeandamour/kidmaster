@@ -2,7 +2,7 @@ import React from 'react'
 import { Header } from './header'
 import Recent from './recent'
 import Project from './project'
-import { useAppStore } from '../store/app'
+import { useAppStore } from '@/store/app'
 import { useNavigate } from 'react-router-dom'
 
 export default function Dashboard() {
@@ -13,7 +13,7 @@ export default function Dashboard() {
     <div className='max-w-screen-2xl flex w-full h-full'>
       <div className='w-20 ml-3 flex items-center justify-between flex-col'>
         <div className='w-full items-center flex flex-col'>
-          <button type="button" onClick={e => {router('/');setOnDashboard(true)}} role="tab" aria-selected="false" id="Pivot37-Tab1" className="relative outline-transparent text-sm font-normal border-0 rounded-2xl cursor-pointer text-center inline-block h-14 bg-transparent ml-0 mb-2 w-14 select-none hover:bg-white" name="My Media" data-content="My Media xx" data-is-focusable="true" tabIndex={-1}>
+          <button type="button" onClick={() => {router('/');setOnDashboard(true)}} role="tab" aria-selected="false" id="Pivot37-Tab1" className="relative outline-transparent text-sm font-normal border-0 rounded-2xl cursor-pointer text-center inline-block h-14 bg-transparent ml-0 mb-2 w-14 select-none hover:bg-white" name="My Media" data-content="My Media xx" data-is-focusable="true" tabIndex={-1}>
             <span className="flex flex-wrap h-full justify-start items-center select-none" data-automationid="splitbuttonprimary">
               <span className="flex relative w-full h-full ">
                 <span className="flex flex-1 flex-col items-center h-full max-w-full justify-center rounded select-none ">
@@ -26,7 +26,7 @@ export default function Dashboard() {
               </span>
             </span>
           </button>
-          <button type="button" onClick={e => {router('/editor');setOnDashboard(false)}} role="tab" aria-selected="false" id="Pivot37-Tab1" className="relative outline-transparent text-sm font-normal border-0 rounded-2xl cursor-pointer text-center inline-block h-14 bg-transparent ml-0 mb-2 w-14 select-none hover:bg-white" name="My Media" data-content="My Media xx" data-is-focusable="true" tabIndex={-1}>
+          <button type="button" onClick={() => {router('/editor');setOnDashboard(false)}} role="tab" aria-selected="false" id="Pivot37-Tab1" className="relative outline-transparent text-sm font-normal border-0 rounded-2xl cursor-pointer text-center inline-block h-14 bg-transparent ml-0 mb-2 w-14 select-none hover:bg-white" name="My Media" data-content="My Media xx" data-is-focusable="true" tabIndex={-1}>
             <span className="flex flex-wrap h-full justify-start items-center select-none" data-automationid="splitbuttonprimary">
               <span className="flex relative w-full h-full ">
                 <span className="flex flex-1 flex-col items-center h-full max-w-full justify-center rounded select-none ">
@@ -40,7 +40,7 @@ export default function Dashboard() {
             </span>
           </button>
         </div>
-        <button type="button" onClick={e => setOnDashboard(true)} role="tab" aria-selected="false" id="Pivot37-Tab1" className="relative outline-transparent text-sm font-normal border-0 rounded-2xl cursor-pointer text-center inline-block h-14 bg-transparent ml-0 mb-2 w-14 select-none hover:bg-white" name="My Media" data-content="My Media xx" data-is-focusable="true" tabIndex={-1}>
+        <button type="button" onClick={() => setOnDashboard(true)} role="tab" aria-selected="false" id="Pivot37-Tab1" className="relative outline-transparent text-sm font-normal border-0 rounded-2xl cursor-pointer text-center inline-block h-14 bg-transparent ml-0 mb-2 w-14 select-none hover:bg-white" name="My Media" data-content="My Media xx" data-is-focusable="true" tabIndex={-1}>
           <span className="flex flex-wrap h-full justify-start items-center select-none" data-automationid="splitbuttonprimary">
             <span className="flex relative w-full h-full ">
               <span className="flex flex-1 flex-col items-center h-full max-w-full justify-center rounded select-none ">
@@ -61,7 +61,7 @@ export default function Dashboard() {
         </div>
         <div className='flex-1 px-5 w-full overflow-y-auto flex flex-col xl:flex-row'>
           <div className='w-full xl:w-1/2 '>
-            <span className='p-5 pl-0 block'>Recents</span>
+            <span className='p-5 pl-0 block'>Resents</span>
             <div className='flex gap-8  xl:gap-2 xl:flex-wrap'>
               <Recent />
               <Recent />
@@ -88,7 +88,8 @@ export default function Dashboard() {
                 <div className="absolute w-3 h-3 bg-gray-400 rounded-full mt-1.5 -left-1.5 border border-white  "></div>
                 <time className="mb-1 text-sm font-normal leading-none text-gray-700 ">Move right</time>
                 <p className="mb-4 text-xs font-normal text-gray-500 ">Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar.</p>
-                <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700">Learn more <svg className="w-3 h-3 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></a>
+                <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700">Learn more <svg className="w-3 h-3 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg></a>
               </li>
               <li className="mb-5 ml-4">
                 <div className="absolute w-3 h-3 bg-gray-400 rounded-full mt-1.5 -left-1.5 border border-white  "></div>

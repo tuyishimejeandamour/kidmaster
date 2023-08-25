@@ -40,7 +40,7 @@ export function buildPinY(position:number,type:"output"|"input"){
 /**
  * 节点默认宽度
  */
-export const defaultNodeWidth = 250;
+export const defaultNodeWidth = 180;
 /**
  * 根据所需要的空间计算高度(基于BaseNode形式计算出的)
  * 1 - 70

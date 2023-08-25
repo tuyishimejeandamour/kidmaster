@@ -13,7 +13,7 @@ import { useNodeStore } from '../store/node';
 
 const ContextMenu: React.FC = React.memo(() => {
 
-  const { selectedNodeIds, showSideEditor,setActiveSpace, contextMenu, setShowSideEditor, deleteAllSelected, setShowPopup, openCommandModal, setGroupCommand } = useUIStore()
+  const { selectedNodeIds,showBluetoothDevices, showSideEditor,setActiveSpace, contextMenu, setShowSideEditor, deleteAllSelected,setShowBluetoothDevices, setShowPopup, openCommandModal, setGroupCommand } = useUIStore()
   const data = useNodeInfo(selectedNodeIds[0])
   const { createNode, resetNode } = useNodeStore()
 
@@ -53,7 +53,7 @@ const ContextMenu: React.FC = React.memo(() => {
   }
   const handleDelAll = async () => {
     setShowPopup(false)
-    const nodeInfo = await confirm("Do you want to Delete All Nodes")
+    const nodeInfo = confirm("Do you want to Delete All Nodes")
     if (nodeInfo) {
       resetNode();
     }
@@ -88,11 +88,11 @@ const ContextMenu: React.FC = React.memo(() => {
               )
             }
             {
-              !showSideEditor &&
+                (!showSideEditor || (showBluetoothDevices && showSideEditor)) &&
               <li className='w-full bg-transparent select-none h-7 px-1 rounded-md flex items-center hover:cursor-pointer hover:bg-gray-300/50 ' onClick={() => {
                 setShowPopup(false)
                 setShowSideEditor(true)
-
+                setShowBluetoothDevices(false)
               }}>
                 <div className='flex-1 text-[12px] capitalize select-none ' >Edit</div>
                 <div className='w-auto flex items-center justify-center px-1 text-[11px]'>

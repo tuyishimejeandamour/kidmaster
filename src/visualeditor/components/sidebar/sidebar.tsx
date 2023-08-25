@@ -2,9 +2,9 @@ import React from 'react';
 import { useAppStore } from '@/store/app';
 import SidebarHeader from './sideBarHeader';
 import { useUIStore } from '../..';
-import ActionsComands from '../../../components/commands/actions';
+import ActionsCommands from '../../../components/commands/actions';
 import FunctionsComands from '../../../components/commands/function';
-import VariableComands from '../../../components/commands/variable';
+import VariableCommands from '../../../components/commands/variable';
 import { useNodes } from '@/hooks/useNodes';
 
 const Sidebar = () => {
@@ -51,10 +51,10 @@ const Sidebar = () => {
                     </div>
                     <div className={'overflow-y-auto flex-1'}>
                         {
-                            groupCommand === "action" && <ActionsComands onNodeClick={handleNodeClick} />
+                            groupCommand === "action" && <ActionsCommands onNodeClick={handleNodeClick} />
                         }
                         {
-                            groupCommand === "variable" && <VariableComands onNodeClick={handleNodeClick} />
+                            groupCommand === "variable" && <VariableCommands onNodeClick={handleNodeClick} />
                         }
                         {
                             groupCommand === "function" && <FunctionsComands onNodeClick={handleFunctionClick} />
