@@ -5,6 +5,7 @@ import { useUIStore } from '@/visualeditor';
 import ActionsCommands from './actions';
 import VariableCommands from './variable';
 import FunctionsCommands from './function';
+import {openConfirmModal} from "@/components/modal/Confirm";
 
 
 interface IModalChoose {
@@ -35,13 +36,17 @@ function ConfirmModal({ selectedNode, onCancel, toReturn, onFunction, onValue }:
             selectedNode(nodeName, data);
             return
         }
-        handleCreateNode(nodeName, data)
+        if(nodeName.includes("group")){
+            openConfirmModal("group")
+        }else {
+            handleCreateNode(nodeName, data)
+        }
     }
     const handleFunctionClick = () => {
         openCommandModal(false)
     }
     const handleKey = (ev: KeyboardEvent) => {
-
+        console.log("hello")
         if (ev.key == "Escape") {
             onCancel()
         }

@@ -1,16 +1,13 @@
 import { NODE_TITLE_HEIGHT } from '../utils/consts';
 import React from 'react';
-import { Group, Rect, Text } from 'react-konva';
+import { Rect, Text } from 'react-konva';
 import { useNodeInfo } from '../hooks/useNodeInfo';
-import { CodeckNodeComponentProps } from '../store/node';
+import { CodeNodeComponentProps } from '../store/node';
 import { useUIStore } from '../store/ui';
-import { color } from '../utils/color';
-import { BaseNodeWrapper } from './BaseNodeWrapper';
+import { BaseNodeWrapper } from '@/visualeditor';
 import { usePinRender } from './hooks/usePinRender';
-import { useExecInRender } from './hooks/useExecInRender';
-import { useExecOutRender } from './hooks/useExecOutRender';
 
-export const GroupStart: React.FC<CodeckNodeComponentProps> = React.memo(
+export const GroupStart: React.FC<CodeNodeComponentProps> = React.memo(
   (props) => {
     const nodeId = props.id;
     const { node, definition } = useNodeInfo(nodeId);
@@ -27,7 +24,7 @@ export const GroupStart: React.FC<CodeckNodeComponentProps> = React.memo(
     return (
       <BaseNodeWrapper x={x} y={y} nodeId={nodeId}>
         <Rect
-          width={width - 10}
+          width={width}
           height={height}
           opacity={0.8}
           cornerRadius={18}
@@ -54,7 +51,7 @@ export const GroupStart: React.FC<CodeckNodeComponentProps> = React.memo(
           align="left"
           verticalAlign="middle"
           fontSize={16}
-          text={label}
+          text={node.displayName}
           fill="white"
         />
 

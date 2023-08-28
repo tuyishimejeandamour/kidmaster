@@ -1,7 +1,8 @@
-import {  } from '@arco-design/web-react';
+import { Message } from '@arco-design/web-react';
 import { useMemoizedFn } from 'ahooks';
 import { persist } from '../visualeditor';
 import { useLayoutEffect, useState } from 'react';
+import FileSaver from 'file-saver';
 
 
 export function usePersist() {
@@ -19,9 +20,9 @@ export function usePersist() {
     const [fileHandle] = await window.showOpenFilePicker({
       types: [
         {
-          description: 'KidMaster',
+          description: 'chime file',
           accept: {
-            'application/codeck': ['.codeck'],
+            'application/chime': ['.ch'],
           },
         },
       ],
@@ -41,14 +42,14 @@ export function usePersist() {
       await writeFile(fileHandle, JSON.stringify(persist.getCurrentData()));
     }
     persist.saveIntoLocalStorage();
-    Message.success('Uploaded successful');
+    Message.success('saved successful');
   });
 
   const saveAs = useMemoizedFn(() => {
     const raw = JSON.stringify(persist.getCurrentData());
     console.log(raw);
-    //const blob = new Blob([raw], { type: 'text/plain;charset=utf-8' });
-    // FileSaver.saveAs(blob, `codeck-${Date.now()}.codeck`);
+    const blob = new Blob([raw], { type: 'text/plain;charset=utf-8' });
+    FileSaver.saveAs(blob, `chime-${Date.now()}.ch`);
   });
 
   useLayoutEffect(() => {

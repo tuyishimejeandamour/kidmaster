@@ -7,37 +7,39 @@ import { generateNodeId } from '../utils/string-helper';
 import { BeginNodeDefinition } from '../nodes/definitions/core/begin';
 import { LogNodeDefinition } from '../nodes/definitions/core/log';
 import { BEGIN_NODE_ID } from '../utils/consts';
-import { Space, useUIStore } from './ui';
+import {useUIStore } from './ui';
+import React from "react";
 
-export type CodeckNodeType = 'begin' | 'return' | 'function' | 'logic' | 'call' | 'grouping';
+export type CodeNodeType = 'begin' | 'return' | 'function' | 'logic' | 'call' | 'grouping';
 
 export type CodeFn = (ctx: {
-  node: CodeckNode;
+  node: CodeNode;
   buildPinVarName: (pinName: string, nodeId?: string) => string;
   getConnectionInput: (pinName: string, nodeId?: string) => string | null;
   getConnectionExecOutput: (pinName: string, nodeId?: string) => string | null;
 }) => string;
 
-export interface CodeckNode {
+export interface CodeNode {
   id: string;
-  name: string; // 节点名, 指向 CodeckNodeDefinition
+  name: string;
+  displayName?: string;
   space?: string
   position: Konva.Vector2d;
-  data?: Record<string, any>; // node中存储的数据。比如用户输入
+  data?: Record<string, any>;
 }
 
-export interface CodeckNodeComponentProps {
+export interface CodeNodeComponentProps {
   id: string;
 }
 
-export type CodeckNodePortType = 'port' | 'exec';
+export type CodeNodePortType = 'port' | 'exec';
 
-export interface CodeckNodePinDefinition {
+export interface CodeNodePinDefinition {
   html?: React.ComponentType<{
     nodeId: string;
   }>;
   name: string;
-  type: CodeckNodePortType;
+  type: CodeNodePortType;
   position: Konva.Vector2d;
   defaultValue?: any;
   renderType?: string;
@@ -48,18 +50,7 @@ export interface CodeckNodePinDefinition {
 
 export interface CodeImportPrepare {
   type: 'import';
-
-  /**
-   * 导入模块名(依赖名，如: lodash)
-   */
   module: string;
-
-  /**
-   * 导入模块的成员, 如果不填则为纯导入
-   * 如果有别名则为元组
-   * 字符串为导入部分成员，如果为元组则视为别名
-   * 特别的，如果是默认导入填写: ['default', 'anything']
-   */
   member?: string | [string, string];
   version?: string;
 }
@@ -81,64 +72,47 @@ export interface UIDefinition {
 
 }
 
-export interface CodeckNodeDefinition {
+export interface CodeNodeDefinition {
   name: string;
   label: string;
-  type: CodeckNodeType;
+  type: CodeNodeType;
   width: number;
   height: number;
   category: string;
-  /**
-   * 是否在右键菜单中隐藏
-   */
   hidden?: boolean;
   ui?: UIDefinition;
-  inputs: CodeckNodePinDefinition[];
-  outputs: (CodeckNodePinDefinition & { code?: CodeFn })[];
-  component: React.ComponentType<CodeckNodeComponentProps>;
-  html?: React.ComponentType<CodeckNodeComponentProps>;
-  /**
-   * 代码生成的前置准备
-   */
+  inputs: CodeNodePinDefinition[];
+  outputs: (CodeNodePinDefinition & { code?: CodeFn })[];
+  component: React.ComponentType<CodeNodeComponentProps>;
+  html?: React.ComponentType<CodeNodeComponentProps>;
+
   prepare?: CodePrepare[];
-  /**
-   * 节点代码生成逻辑
-   */
   code?: CodeFn;
+  debug?: CodeFn;
 }
 
 interface NodeState {
-  nodeMap: Record<string, CodeckNode>;
-  nodeDefinition: Record<string, CodeckNodeDefinition>;
-  /**
-   * 注册节点
-   */
-  regNode: (definition: CodeckNodeDefinition) => void;
-  /**
-   * 更新节点位置
-   */
+  nodeMap: Record<string, CodeNode>;
+  nodeDefinition: Record<string, CodeNodeDefinition>;
+
+  regNode: (definition: CodeNodeDefinition) => void;
   updateNodePos: (nodeId: string, position: Konva.Vector2d) => void;
   moveNode: (nodeId: string, deltaX: number, deltaY: number) => void;
-  getNodeDefinition: (nodeId: string) => CodeckNodeDefinition | null;
+  getNodeDefinition: (nodeId: string) => CodeNodeDefinition | null;
   getPinDefinitionByName: (
     nodeId: string,
     pinName: string
-  ) => CodeckNodePinDefinition | null;
+  ) => CodeNodePinDefinition | null;
   createNode: (
     nodeName: string,
     position: Konva.Vector2d,
-    data?: CodeckNode['data'],
+    data?: CodeNode['data'],
     group?: string,
 
   ) => void;
-  /**
-   * 设置节点数据
-   */
+
   setNodeData: (nodeId: string, key: string, value: unknown) => void;
   removeNode: (nodeId: string) => void;
-  /**
-   * 重置
-   */
   resetNode: () => void;
 }
 
@@ -170,7 +144,7 @@ export const useNodeStore = create<NodeState>()(
   immer((set, get) => ({
     nodeMap: buildDefaultNodeMap(),
     nodeDefinition: {},
-    regNode: (definition: CodeckNodeDefinition) => {
+    regNode: (definition: CodeNodeDefinition) => {
       set((state) => {
         if (state.nodeDefinition[definition.name]) {
           console.warn('This node is registered', definition.name);
@@ -215,7 +189,7 @@ export const useNodeStore = create<NodeState>()(
     },
     getPinDefinitionByName: (nodeId, pinName) => {
       const { getNodeDefinition } = get();
-      const definition: CodeckNodeDefinition | null = getNodeDefinition(nodeId);
+      const definition: CodeNodeDefinition | null = getNodeDefinition(nodeId);
       if (!definition) {
         return null;
       }
@@ -228,14 +202,15 @@ export const useNodeStore = create<NodeState>()(
     },
     createNode: (nodeName, position, data) => {
       set((state) => {
-        const activespace = useUIStore.getState().activeSpace
+        const activeSpace = useUIStore.getState().activeSpace
         let id = generateNodeId();
-        if (nodeName === "group") {
-          id = `group_${id}`
+        if (nodeName.includes("group")) {
+          id = `group_${nodeName.split("_")[1]}_${id}`
           const another = `$gb_${generateNodeId()}`
           state.nodeMap[another] = {
             id: another,
-            name: "groubBegin",
+            name: "groupBegin",
+            displayName: nodeName.split("_")[1],
             position: {
               x: 200,
               y: 150,
@@ -248,10 +223,11 @@ export const useNodeStore = create<NodeState>()(
           id = `function_${id}`
         }
 
-        if (activespace.space === "group" && nodeName === "group") {
+        if (activeSpace.space === "group" && nodeName.includes("group")) {
           state.nodeMap[id] = {
             id,
-            name: nodeName,
+            name: "group",
+            displayName: nodeName.split("_")[1],
             position,
             data,
             space: "main"
@@ -260,10 +236,11 @@ export const useNodeStore = create<NodeState>()(
         } else {
           state.nodeMap[id] = {
             id,
-            name: nodeName,
+            name: !nodeName.includes("group") ? nodeName : "group",
+            displayName: !nodeName.includes("group") ? nodeName: nodeName.split("_")[1],
             position,
             data,
-            space: activespace.space === "group" ? activespace.name : "main"
+            space: activeSpace.space === "group" ? activeSpace.name : "main"
 
           };
         }
@@ -282,7 +259,6 @@ export const useNodeStore = create<NodeState>()(
     },
     removeNode: (nodeId) => {
       if (nodeId === BEGIN_NODE_ID) {
-        // 不能删除开始节点
         return;
       }
 
@@ -331,10 +307,6 @@ export const useNodeStore = create<NodeState>()(
   }))
 );
 
-/**
- * 注册节点
- * @param definition 节点定义
- */
-export function regNode(definition: CodeckNodeDefinition) {
+export function regNode(definition: CodeNodeDefinition) {
   useNodeStore.getState().regNode(definition);
 }

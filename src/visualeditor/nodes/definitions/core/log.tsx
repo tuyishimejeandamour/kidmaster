@@ -1,14 +1,14 @@
 import React from 'react';
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '@/visualeditor';
 import { BaseNode } from '../../BaseNode';
 import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
-import { buildNodeHeight, defaultNodeWidth } from '../../../utils/size-helper';
+import { buildNodeHeight, defaultNodeWidth } from '@/visualeditor';
 import { standard } from '../../..';
 
 const width = defaultNodeWidth+20;
 const height = buildNodeHeight(2);
 
-export const LogNodeDefinition: CodeckNodeDefinition = {
+export const LogNodeDefinition: CodeNodeDefinition = {
   name: 'log',
   label: 'Display',
   type: 'function',

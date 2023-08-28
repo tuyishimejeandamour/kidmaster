@@ -1,11 +1,11 @@
-import { CodeckNode, CodeckNodeDefinition, useNodeStore } from '../store/node';
+import { CodeNode, CodeNodeDefinition, useNodeStore } from '../store/node';
 
 /**
  * 获取节点信息
  */
 export function useNodeInfo(nodeId: string): {
-  node: CodeckNode | null;
-  definition: CodeckNodeDefinition | null;
+  node: CodeNode | null;
+  definition: CodeNodeDefinition | null;
 } {
   const { nodeMap, nodeDefinition } = useNodeStore((state) => ({
     nodeMap: state.nodeMap,

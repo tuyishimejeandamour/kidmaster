@@ -1,13 +1,13 @@
-import { CodeckNodeDefinition } from '../../store/node';
+import { CodeNodeDefinition } from '@/visualeditor';
 import { DEFAULT_CORE_CATEGORY } from '../../utils/consts';
-import { buildNodeHeight } from '../../utils/size-helper';
+import { buildNodeHeight } from '@/visualeditor';
 import { standard } from '../..';
 import { GroupNode } from '../Group';
 
 const width = 130;
 const height = buildNodeHeight(1);
 
-export const GroupNodeDefinition: CodeckNodeDefinition = {
+export const GroupNodeDefinition: CodeNodeDefinition = {
   name: 'group',
   label: 'group',
   type: 'logic',

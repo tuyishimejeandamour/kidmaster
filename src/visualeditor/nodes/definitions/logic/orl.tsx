@@ -1,11 +1,11 @@
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '../../../store/node';
 import { BooleanInputPreset } from '../../components/preset/BooleanInputPreset';
 import { buildCombinedLogicDefinition } from './_utils';
 
 /**
  * 逻辑或
  */
-export const OrlNodeDefinition: CodeckNodeDefinition =
+export const OrlNodeDefinition: CodeNodeDefinition =
   buildCombinedLogicDefinition({
     name: 'or',
     label: 'Logic Or',

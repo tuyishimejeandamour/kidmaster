@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { isEmpty } from 'lodash-es';
-import { BaseNode } from '../nodes/BaseNode';
-import { OutputPinLabel, PinLabel } from '../nodes/components/pin/Label';
+import { BaseNode } from '@/visualeditor';
+import { OutputPinLabel, PinLabel } from '@/visualeditor';
 import { SelectInputPresetProps } from '../nodes/components/preset/SelectInputPreset';
 import {
   BooleanInputPreset,
   NumberInputPreset,
   SelectInputPreset,
   TextInputPreset,
-} from '../nodes/__all__';
-import { CodeckNodePinDefinition, CodeckNodeDefinition } from '../store/node';
+} from '@/visualeditor';
+import { CodeNodePinDefinition, CodeNodeDefinition } from '../store/node';
 import { STANDARD_PIN_EXEC_IN, STANDARD_PIN_EXEC_OUT } from './consts';
 import {
   buildNodeHeight,
@@ -26,15 +26,10 @@ import { TextAreaInputPresetHtml } from '../nodes/components/sideEditor/preset/T
 import { NumberInputPresetHtml } from '../nodes/components/sideEditor/preset/NumberInputPresetHtml';
 import { SelectInputPresetHtml } from '../nodes/components/sideEditor/preset/SelectInputPresetHtml';
 import { BooleanInputPresetHtml } from '../nodes/components/sideEditor/preset/BooleanInputPresetHtml';
-import { useConnectionStore } from '../store/connection';
+import { useConnectionStore } from '@/visualeditor';
 import { BaseInputPresetProps } from '../nodes/components/preset/types';
-import { useMemoizedFn } from 'ahooks';
-import { useNodeDataValue } from '../hooks/useNodeData';
 
-/**
- * 标准执行输入
- */
-export function execPinInput(width: number): CodeckNodePinDefinition {
+export function execPinInput(width: number): CodeNodePinDefinition {
   return {
     name: STANDARD_PIN_EXEC_IN,
     type: 'exec',
@@ -45,10 +40,8 @@ export function execPinInput(width: number): CodeckNodePinDefinition {
   };
 }
 
-/**
- * 标准执行输出
- */
-export function execPinOutput(width: number, height?: number): CodeckNodePinDefinition {
+
+export function execPinOutput(width: number, height?: number): CodeNodePinDefinition {
   return {
     name: STANDARD_PIN_EXEC_OUT,
     type: 'exec',
@@ -68,28 +61,28 @@ interface BasePinGenerateOptions {
 
 function portPin(
   options: BasePinGenerateOptions & {
-    defaultValue?: CodeckNodePinDefinition['defaultValue'];
+    defaultValue?: CodeNodePinDefinition['defaultValue'];
   }
 ): {
   input: {
-    base: () => CodeckNodePinDefinition;
-    text: () => CodeckNodePinDefinition;
+    base: () => CodeNodePinDefinition;
+    text: () => CodeNodePinDefinition;
     textarea: (
       inputProps: TextAreaInputPresetProps['inputProps']
-    ) => CodeckNodePinDefinition;
-    number: () => CodeckNodePinDefinition;
-    boolean: () => CodeckNodePinDefinition;
+    ) => CodeNodePinDefinition;
+    number: () => CodeNodePinDefinition;
+    boolean: () => CodeNodePinDefinition;
     select: (
       selectOptions: SelectInputPresetProps['options']
-    ) => CodeckNodePinDefinition;
+    ) => CodeNodePinDefinition;
   };
   output: {
-    base: () => CodeckNodePinDefinition;
+    base: () => CodeNodePinDefinition;
   };
 } {
   const buildBaseDef = (
     direction: 'input' | 'output'
-  ): CodeckNodePinDefinition => ({
+  ): CodeNodePinDefinition => ({
     name: options.name,
     type: 'port',
     position: {
@@ -235,12 +228,9 @@ function portPin(
   };
 }
 
-/**
- * 自定义执行端点
- */
 function execPin(options: BasePinGenerateOptions): {
-  input: () => CodeckNodePinDefinition;
-  output: () => CodeckNodePinDefinition;
+  input: () => CodeNodePinDefinition;
+  output: () => CodeNodePinDefinition;
 } {
   return {
     input: () => ({
@@ -254,9 +244,6 @@ function execPin(options: BasePinGenerateOptions): {
   };
 }
 
-/**
- * 标准端点生成逻辑
- */
 export function pin(options: BasePinGenerateOptions) {
   return {
     exec: execPin(options),
@@ -264,25 +251,19 @@ export function pin(options: BasePinGenerateOptions) {
   };
 }
 
-/**
- * 对象构造节点
- */
 export const objConstructNode = (
-  options: Pick<CodeckNodeDefinition, 'name' | 'label' | 'category'> &
-    Partial<Pick<CodeckNodeDefinition, 'width' | 'height'>> & {
-      /**
-       * 解构所需要的
-       */
+  options: Pick<CodeNodeDefinition, 'name' | 'label' | 'category'> &
+    Partial<Pick<CodeNodeDefinition, 'width' | 'height'>> & {
       inputList: {
         name: string;
         label?: string;
-        position?: number; // 默认递增，因为考虑到组件会占用所以可以指定
-        required?: boolean; // 默认为false
-        component?: CodeckNodePinDefinition['component']; // 渲染函数
+        position?: number;
+        required?: boolean;
+        component?: CodeNodePinDefinition['component'];
       }[];
       constructWrapper?: string;
     }
-): CodeckNodeDefinition => {
+): CodeNodeDefinition => {
   const width = options.width ?? defaultNodeWidth;
   const height =
     options.height ?? buildNodeHeight(Math.max(options.inputList.length, 1));
@@ -336,7 +317,6 @@ export const objConstructNode = (
         );
       };
 
-      // 必要性验证
       const invalidInput = options.inputList
         .filter((input) => input.required === true)
         .filter((item) => {
@@ -369,21 +349,15 @@ export const objConstructNode = (
   };
 };
 
-/**
- * 对象解构节点
- */
 export const objDeconstructNode = (
-  options: Pick<CodeckNodeDefinition, 'name' | 'label' | 'category'> &
-    Partial<Pick<CodeckNodeDefinition, 'width'>> & {
-      /**
-       * 解构出的成员列表
-       */
+  options: Pick<CodeNodeDefinition, 'name' | 'label' | 'category'> &
+    Partial<Pick<CodeNodeDefinition, 'width'>> & {
       outputList: {
         name: string;
         label?: string;
       }[];
     }
-): CodeckNodeDefinition => {
+): CodeNodeDefinition => {
   const width = options.width ?? defaultNodeWidth;
   const height = buildNodeHeight(Math.max(options.outputList.length, 1));
 

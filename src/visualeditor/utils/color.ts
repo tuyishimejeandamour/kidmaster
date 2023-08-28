@@ -1,14 +1,14 @@
-import { CodeckNodeType } from "../store/node";
+import { CodeNodeType } from "../store/node";
 
 // 选用的配色方案: https://flatuicolors.com/palette/us
-export type BgColor = Exclude<CodeckNodeType,'begin' | 'end'>;
+export type BgColor = Exclude<CodeNodeType,'begin' | 'end'>;
 export interface IColor{
   nodeLabel:string;
   nodeLabelBox:string;
   nodeBoxGradient: Record< BgColor|'variable',{start:string,end:string}>
   text:string,
   variable: Record<'number'|'string'|'boolean'|'array'|'data',string>
-  node: Record<CodeckNodeType,string>
+  node: Record<CodeNodeType,string>
 }
 export const color : IColor = {
   nodeLabel: '#ffffff',

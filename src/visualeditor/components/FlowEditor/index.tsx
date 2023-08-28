@@ -80,7 +80,6 @@ export const FlowEditor: React.FC = React.memo(() => {
                 ref={stageRef}
                 className="flow-editor"
                 style={{ height: '100%', width: '100%', overflow: "auto" }}
-
                 width={width}
                 height={height}
                 scale={scale}

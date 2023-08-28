@@ -1,11 +1,11 @@
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '../../../store/node';
 import { BooleanInputPreset } from '../../components/preset/BooleanInputPreset';
 import { buildCombinedLogicDefinition } from './_utils';
 
 /**
  * 逻辑与
  */
-export const AnlNodeDefinition: CodeckNodeDefinition =
+export const AnlNodeDefinition: CodeNodeDefinition =
   buildCombinedLogicDefinition({
     name: 'and',
     label: 'Logic And',

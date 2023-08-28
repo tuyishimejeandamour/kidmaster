@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { CodeckNodePortType } from './node';
+import { CodeNodePortType } from './node';
 import { immer } from 'zustand/middleware/immer';
 import { generateNodeId } from '../utils/string-helper';
 import { uniqBy, without } from 'lodash-es';
@@ -23,25 +23,25 @@ interface ConnectionState {
   workingConnection: {
     fromNodeId: string;
     fromNodePinName: string;
-    fromNodePinType: CodeckNodePortType;
+    fromNodePinType: CodeNodePortType;
     fromNodeDirection: PinDirection;
   } | null;
   recentConnection: {
     fromNodeId: string;
     fromNodePinName: string;
-    fromNodePinType: CodeckNodePortType;
+    fromNodePinType: CodeNodePortType;
     fromNodeDirection: PinDirection;
   } | null;
   startConnect: (
     fromNodeId: string,
     fromNodePinName: string,
-    fromNodePinType: CodeckNodePortType,
+    fromNodePinType: CodeNodePortType,
     fromNodeDirection: PinDirection
   ) => void;
   endConnect: (
     toNodeId: string,
     toNodePinName: string,
-    toNodePinType: CodeckNodePortType,
+    toNodePinType: CodeNodePortType,
     toNodeDirection: PinDirection
   ) => void;
   cancelConnect: () => void;

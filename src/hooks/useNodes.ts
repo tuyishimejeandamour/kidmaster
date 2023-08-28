@@ -40,7 +40,7 @@ export function useNodes() {
     );
 
     const list = useMemo(
-        () => values(nodeDefinition).filter((definiton) => !definiton.hidden),
+        () => values(nodeDefinition).filter((definition) => !definition.hidden),
         [nodeDefinition]
     );
 

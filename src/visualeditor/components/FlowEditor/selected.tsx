@@ -4,18 +4,12 @@ import useModifierRender from '../../nodes/hooks/useModifierRender';
 import { useUIStore } from '../../store/ui';
 import { ColorEditorBase } from '../../nodes/components/sideEditor/colorBase';
 import BlueToothPanel from "@/visualeditor/components/sidebar/bluetooth/bluetoothPanel";
-import Action from "@/components/button/action";
 
 export default function Selected() {
 
   const { selectedNodeIds,showBluetoothDevices,setShowBluetoothDevices,setShowSideEditor } = useUIStore();
   const { node, definition } = useNodeInfo(selectedNodeIds[0])
   let ui = useModifierRender(node, definition)
-
-  const handlePositionChange = (data: string, key: string) => {
-  }
-  const handleColorChange = (color: string, key: string) => {
-  }
 
     function handleBluetoothScan() {
         setShowBluetoothDevices(true)
@@ -54,17 +48,9 @@ export default function Selected() {
         <>
           <PositionsBase
             key={"posit"}
-            x={node.position.x}
-            y={node.position.y}
-            height={definition?.width}
-            width={definition?.height}
-            onChange={handlePositionChange}
-
           />
           <ColorEditorBase
-          background='#dde'
-          header='#ccc'
-          onChange={handleColorChange}
+           definition={definition || undefined}
           />
         </>
       }

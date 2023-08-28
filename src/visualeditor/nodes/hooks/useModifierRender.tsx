@@ -1,8 +1,8 @@
 
 import React from "react";
-import { CodeckNode, CodeckNodeDefinition } from "../../store/node";
+import { CodeNode, CodeNodeDefinition } from "../../store/node";
 
-export default function useModifierRender(node: CodeckNode | null, definition: CodeckNodeDefinition | null) {
+export default function useModifierRender(node: CodeNode | null, definition: CodeNodeDefinition | null) {
     if (!node || !definition) {
         return <></>;
     }

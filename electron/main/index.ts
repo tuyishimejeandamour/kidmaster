@@ -4,7 +4,10 @@ import {join} from 'node:path'
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import {update} from './update'
+import {spawn} from 'child_process';
 import ScanData = Bluetooth.ScanData;
+import * as child_process from "child_process";
+
 
 process.env.DIST_ELECTRON = join(__dirname, '../')
 process.env.DIST = join(process.env.DIST_ELECTRON, '../dist')
@@ -69,10 +72,10 @@ async function createWindow() {
     if (url.startsWith('https:')) shell.openExternal(url)
     return { action: 'deny' }
   })
-
   // Apply electron-updater
   update(win)
 }
+
 
 app.whenReady().then(async () => {
   await createWindow();
@@ -109,9 +112,42 @@ app.whenReady().then(async () => {
       })
     }
 
-    //
+    //handle close
+  ipcMain.on("minimizeApp", () => {
+    win?.minimize();
+  });
+  ipcMain.on("maximizeApp", () => {
+    if (win?.isMaximized()) {
+      win?.unmaximize();
+    } else {
+      win?.maximize();
+    }
+  });
+  ipcMain.on("closeApp", () => {
+    win?.close();
+  });
 
-    ipcMain.on("bluetooth-state", (event, args) => {
+  ipcMain.on("compile",(event, args) => {
+
+    const cplusplusProcess = spawn("/home/damour/Documents/projects/language/cmake-build-debug/language", []);
+
+// Send data to the C++ program
+    cplusplusProcess.stdin.write(args.code);
+    cplusplusProcess.stdin.end();
+
+// Receive data from the C++ program
+    cplusplusProcess.stdout.on('data', (data) => {
+      // Handle data received from the C++ program
+      console.log('Received from C++:', data.toString());
+    });
+
+    cplusplusProcess.stderr.on('data', (error) => {
+      // Handle error data from the C++ program
+      console.error('Error from C++:', error.toString());
+    });
+  })
+
+  ipcMain.on("bluetooth-state", (event, args) => {
       // args.mode = "discovery" or "pairing"
 
       if (args.mode !== "discovery" && args.mode !== "pairing"){
@@ -165,7 +201,6 @@ app.whenReady().then(async () => {
 
     })
 
-   console.log("Bluetooth State Manager Initialized");
     win?.webContents.on("select-bluetooth-device", (event, devices_list, callback) => {
 
       event.preventDefault();
@@ -200,7 +235,6 @@ app.whenReady().then(async () => {
       }
     })
 
-    //
 
     let scanner_data = {} as Bluetooth.ScanData
 

@@ -106,17 +106,26 @@ button:hover {
 
 .run-code-modal {
   @apply !w-[80vw] max-w-[995px] max-h-[calc(100vh-60px)] !top-11 !align-top !bg-[#20232a];
+  padding: 0 !important;
 }
-
+.confirm-code-modal{
+  @apply !bg-[#20232a];
+}
 .wrapperModal {
   @apply overflow-hidden;
 }
-.inputhover {
+.input-hover {
   @apply focus:appearance-none  focus:leading-5 focus:px-1 focus:py-2 focus:flex-grow;
 }
-.inputhover:focus {
-  box-shadow: inset 0.1em 0.1em 0.2em #99b5d2, inset -0.1em -0.1em 0.2em #fff;
+.input-hover:focus {
+  box-shadow: inset 0.1em 0.1em 0.2em #2c333b, inset -0.1em -0.1em 0.2em #949393;
 }
-
-
+.drag-window{
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+.un-drag-window{
+  -webkit-user-select: none;
+  -webkit-app-region: no-drag;
+}
 

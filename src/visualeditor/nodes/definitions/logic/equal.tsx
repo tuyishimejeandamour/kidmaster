@@ -1,7 +1,7 @@
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '../../../store/node';
 import { buildCombinedLogicDefinition } from './_utils';
 
-export const EqualNodeDefinition: CodeckNodeDefinition =
+export const EqualNodeDefinition: CodeNodeDefinition =
   buildCombinedLogicDefinition({
     name: 'equal',
     label: 'Equal',

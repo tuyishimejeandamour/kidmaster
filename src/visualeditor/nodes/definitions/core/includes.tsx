@@ -1,14 +1,14 @@
 import React from 'react';
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '@/visualeditor';
 import { BaseNode } from '../../BaseNode';
 import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
-import { buildNodeHeight, defaultNodeWidth } from '../../../utils/size-helper';
+import { buildNodeHeight, defaultNodeWidth } from '@/visualeditor';
 import { standard } from '../../..';
 
 const width = defaultNodeWidth;
 const height = buildNodeHeight(3);
 
-export const IncludesNodeDefinition: CodeckNodeDefinition = {
+export const IncludesNodeDefinition: CodeNodeDefinition = {
   name: 'includes',
   label: 'Includes',
   type: 'call',

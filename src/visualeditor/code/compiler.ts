@@ -1,28 +1,15 @@
-import { isUndefined, uniqBy, values } from 'lodash-es';
-import { VarGetNodeDefinition } from '../nodes/definitions/varget';
-import { ConnectInfo, useConnectionStore } from '../store/connection';
-import {
-  CodeckNode,
-  CodeckNodeDefinition,
-  CodeFunctionPrepare,
-  CodePrepare,
-  useNodeStore,
-} from '../store/node';
-import { useVariableStore } from '../store/variable';
-import { STANDARD_PIN_EXEC_OUT } from '../utils/consts';
-import { formatFunctionIndent } from '../utils/string-helper';
+import {isUndefined, uniqBy, values} from 'lodash-es';
+import {VarGetNodeDefinition} from '../nodes/definitions/varget';
+import {ConnectInfo, useConnectionStore} from '../store/connection';
+import {CodeNode, CodeNodeDefinition, CodeFunctionPrepare, CodePrepare, useNodeStore,} from '../store/node';
+import {formatFunctionIndent, STANDARD_PIN_EXEC_OUT, useVariableStore} from '@/visualeditor';
 
 export class CodeCompiler {
   prepares: CodePrepare[] = [];
   moduleType: 'commonjs' | 'esmodule' = 'esmodule';
-  /**
-   * 是否使用Skypack作为module的处理
-   * 仅 esmodule 模式下有效
-   */
+
   useSkypack = false;
-  /**
-   * 是否为每个节点增加注释
-   */
+
   printComment = true;
 
   get nodeMap() {
@@ -41,9 +28,7 @@ export class CodeCompiler {
     return useVariableStore.getState().variableMap;
   }
 
-  /**
-   * 生成代码
-   */
+
   generate() {
     const begin = this.findBegin();
     let codeText = '';
@@ -56,14 +41,10 @@ export class CodeCompiler {
     return codeText;
   }
 
-  /**
-   * 从某个开始节点生成代码
-   */
-  generateCodeFromNode(startNode: CodeckNode | null) {
+  generateCodeFromNode(startNode: CodeNode | null) {
     let codeText = '';
-    let currentNode: CodeckNode | null = startNode;
+    let currentNode: CodeNode | null = startNode;
 
-    // 主流程代码
     while (currentNode !== null) {
       const definition = this.nodeDefinition[currentNode.name];
       this.collectPrepare(definition);
@@ -108,7 +89,7 @@ export class CodeCompiler {
       return null;
     }
 
-    const fromNode: CodeckNode | undefined =
+    const fromNode: CodeNode | undefined =
       this.nodeMap[connection.fromNodeId];
     if (!fromNode) {
       return null;
@@ -133,7 +114,6 @@ export class CodeCompiler {
     if (outputDef.code) {
       this.collectPrepare(fromNodeDef);
 
-      // 自定义输出代码生成逻辑
       return (
         outputDef.code({
           node: fromNode,
@@ -146,13 +126,10 @@ export class CodeCompiler {
         }) ?? ''
       );
     } else {
-      // 直接取值
-      const pinVarName = this.buildPinVarName(
-        connection.fromNodePinName,
-        connection.fromNodeId
+      return this.buildPinVarName(
+          connection.fromNodePinName,
+          connection.fromNodeId
       );
-
-      return pinVarName;
     }
   }
 
@@ -235,7 +212,6 @@ export class CodeCompiler {
                 })
                 .join('\n');
             } else {
-              // esmodule
               if (this.useSkypack) {
                 module = `https://cdn.skypack.dev/${module}`;
               }
@@ -272,7 +248,7 @@ export class CodeCompiler {
     return prepareCode;
   }
 
-  private findBegin(): CodeckNode {
+  private findBegin(): CodeNode {
     const nodes = values(this.nodeMap).filter(
       (node) => this.nodeDefinition[node.name]?.type === 'begin'
     );
@@ -291,7 +267,7 @@ export class CodeCompiler {
   private getExecNext(
     nodeId: string,
     pinName = STANDARD_PIN_EXEC_OUT
-  ): CodeckNode | null {
+  ): CodeNode | null {
     const node = this.nodeMap[nodeId];
     if (!node) {
       return null;
@@ -314,19 +290,16 @@ export class CodeCompiler {
   }
   private getExecGroup(nodeId: string):string | null {
     
-    const groupstarter = values(this.nodeMap).filter((node)=> node.name === "groubBegin" && node.space === nodeId
+    const groupStarter = values(this.nodeMap).filter((node)=> node.name === "groupBegin" && node.space === nodeId
        );
-    if(groupstarter.length < 1 || groupstarter.length > 1){
+    if(groupStarter.length < 1 || groupStarter.length > 1){
       return null;
     }
-    return groupstarter[0].id
+    return groupStarter[0].id
   }
 
-  /**
-   * 收集节点预备逻辑
-   * @param nodeDef 节点定义
-   */
-  private collectPrepare(nodeDef: Pick<CodeckNodeDefinition, 'prepare'>) {
+
+  private collectPrepare(nodeDef: Pick<CodeNodeDefinition, 'prepare'>) {
     if (Array.isArray(nodeDef.prepare) && nodeDef.prepare.length > 0) {
       this.prepares.push(...nodeDef.prepare);
     }

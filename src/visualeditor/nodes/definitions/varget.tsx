@@ -1,4 +1,4 @@
-import { CodeckNodeDefinition } from '../../store/node';
+import { CodeNodeDefinition } from '../../store/node';
 import { DEFAULT_CORE_CATEGORY } from '../../utils/consts';
 import { VariableNode } from '../VariableNode';
 import {
@@ -11,7 +11,7 @@ import {
 const width = 130;
 const height = buildNodeHeight(1);
 
-export const VarGetNodeDefinition: CodeckNodeDefinition = {
+export const VarGetNodeDefinition: CodeNodeDefinition = {
   name: 'varget',
   label: 'Value Get',
   type: 'logic',

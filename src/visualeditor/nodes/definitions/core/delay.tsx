@@ -1,5 +1,5 @@
 import { standard } from '../../..';
-import { CodeckNodeDefinition } from '@/visualeditor';
+import { CodeNodeDefinition } from '@/visualeditor';
 import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
 import { buildNodeHeight, defaultNodeWidth } from '@/visualeditor';
 import { BaseNode } from '../../BaseNode';
@@ -7,7 +7,7 @@ import { BaseNode } from '../../BaseNode';
 const width = defaultNodeWidth;
 const height = buildNodeHeight(2);
 
-export const DelayNodeDefinition: CodeckNodeDefinition = {
+export const DelayNodeDefinition: CodeNodeDefinition = {
   name: 'delay',
   label: 'Delay',
   type: 'function',
@@ -33,4 +33,9 @@ export const DelayNodeDefinition: CodeckNodeDefinition = {
 
     return `delay(${ms})`;
   },
+  debug: ({ node, getConnectionInput, getConnectionExecOutput }) => {
+    const ms = getConnectionInput('ms') ?? node.data?.ms ?? 0;
+
+    return `console.log('delay ${ms} milliseconds')`;
+  }
 };

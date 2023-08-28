@@ -1,4 +1,4 @@
-import { CodeckNodePinDefinition } from '../store/node';
+import { CodeNodePinDefinition } from '../store/node';
 import { useNodeInfo } from './useNodeInfo';
 
 /**
@@ -7,7 +7,7 @@ import { useNodeInfo } from './useNodeInfo';
 export function usePinDefinition(
   nodeId: string,
   pinName: string
-): CodeckNodePinDefinition | null {
+): CodeNodePinDefinition | null {
   const { definition } = useNodeInfo(nodeId);
 
   if (!definition) {

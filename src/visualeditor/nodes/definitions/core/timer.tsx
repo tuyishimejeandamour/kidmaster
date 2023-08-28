@@ -1,5 +1,5 @@
 import { standard } from '../../..';
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '../../../store/node';
 import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
 import { buildNodeHeight } from '../../../utils/size-helper';
 import { BaseNode } from '../../BaseNode';
@@ -7,7 +7,7 @@ import { BaseNode } from '../../BaseNode';
 const width = 180;
 const height = buildNodeHeight(4);
 
-export const TimerNodeDefinition: CodeckNodeDefinition = {
+export const TimerNodeDefinition: CodeNodeDefinition = {
   name: 'timer',
   label: 'Timer',
   type: 'function',

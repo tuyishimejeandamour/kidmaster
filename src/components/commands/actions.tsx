@@ -4,28 +4,26 @@ import { entries, groupBy } from 'lodash-es'
 import Highlighter from 'react-highlight-words'
 import { Icons } from '@/visualeditor/utils/icons'
 
-const  ActionsCommands:React.FC<{onNodeClick:(Nodename:string) => void}> = React.memo(({onNodeClick}) => {
+
+const  ActionsCommands:React.FC<{onNodeClick:(Codename:string) => void}> = React.memo(({onNodeClick}) => {
     const { searchValue, matchedNode } = useNodes()
     const handleNodeClick = (data:string)=>{
             onNodeClick(data)
     }
   return (
-    <div className='flex flex-col w-full mt-4 '>
+    <div className='flex flex-col overflow-hidden w-full mt-4 '>
     {Array.isArray(matchedNode) &&
         matchedNode.length > 0 &&
         entries(groupBy(matchedNode, 'category')).map(
             ([category, items]) => (
-                <div key={category} title={category} className={"font-semibold w-full flex flex-col"}>
+                <div key={category} data-title={category} className={"font-semibold w-full flex flex-col"}>
                     <h2 className='text-xs mb-3 ml-2'>{category}</h2>
                     <div className='flex flex-wrap w-full gap-2 '>
                         {items.map((item) => (
                             <div
                                 key={`${category}-${item.name}`}
                                 onClick={() => handleNodeClick(item.name)}
-                                className={"relative outline-transparent text-sm font-normal border-0 rounded cursor-pointer text-center inline-block h-14 bg-transparent ml-0 mb-2 w-14 groupCommand-none hover:bg-blue-300/10"}
-                                title={
-                                    item.label
-                                }
+                                className={"relative tags outline-transparent text-sm font-normal border-0 rounded cursor-pointer text-center inline-block h-14 bg-transparent ml-0 mb-2 w-14 groupCommand-none hover:bg-blue-300/10"}
                             >
                                 <span className="flex flex-wrap h-full justify-start items-center groupCommand-none" data-automationid="splitbuttonprimary">
                                     <span className="flex relative w-full h-full ">

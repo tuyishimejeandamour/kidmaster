@@ -1,3 +1,6 @@
+import { Titlebar } from "custom-electron-titlebar";
+
+
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
   return new Promise(resolve => {
     if (condition.includes(document.readyState)) {
@@ -32,41 +35,84 @@ const safeDOM = {
  * https://matejkustec.github.io/SpinThatShit
  */
 function useLoading() {
-  const className = `loaders-css__square-spin`
-  const styleContent = `
-@keyframes square-spin {
-  25% { transform: perspective(100px) rotateX(180deg) rotateY(0); }
-  50% { transform: perspective(100px) rotateX(180deg) rotateY(180deg); }
-  75% { transform: perspective(100px) rotateX(0) rotateY(180deg); }
-  100% { transform: perspective(100px) rotateX(0) rotateY(0); }
+  const className = `content`
+  const styleContent =`
+  
+* {
+\tmargin: 0;
+\tpadding: 0;
+\tbox-sizing: border-box;
+\tfont-family: "Poppins", sans-serif;
 }
-.${className} > div {
-  animation-fill-mode: both;
-  width: 50px;
-  height: 50px;
-  background: #fff;
-  animation: square-spin 3s 0s cubic-bezier(0.09, 0.57, 0.49, 0.9) infinite;
+
+body {
+\tdisplay: flex;
+\tbackground: #474952fa;
+\tmin-height: 100vh;
+\talign-items: center;
+\tjustify-content: center;
 }
-.app-loading-wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #282c34;
-  z-index: 9;
-}
-    `
+.content {
+    position: relative;
+  }
+
+.content h2 {
+    color: #fff;
+    font-size: 8em;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+
+.content h2:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 2px rgb(59 130 246);
+  }
+
+.content h2:nth-child(2) {
+    color: rgb(59 130 246);
+    animation: animate 4s ease-in-out infinite;
+  }
+
+@keyframes animate {
+    0%,
+    100% {
+      clip-path: polygon(
+        0% 45%,
+        16% 44%,
+        33% 50%,
+        54% 60%,
+        70% 61%,
+        84% 59%,
+        100% 52%,
+        100% 100%,
+        0% 100%
+    );
+  }
+
+    50% {
+      clip-path: polygon(
+        0% 60%,
+        15% 65%,
+        34% 66%,
+        51% 62%,
+        67% 50%,
+        84% 45%,
+        100% 46%,
+        100% 100%,
+        0% 100%
+    );
+  }
+  }`
   const oStyle = document.createElement('style')
   const oDiv = document.createElement('div')
 
   oStyle.id = 'app-loading-style'
   oStyle.innerHTML = styleContent
   oDiv.className = 'app-loading-wrap'
-  oDiv.innerHTML = `<div class="${className}"><div></div></div>`
+  oDiv.innerHTML = `<div class="${className}">
+<h2>chemi</h2>
+<h2>chemi</h2>
+</div>`
 
   return {
     appendLoading() {

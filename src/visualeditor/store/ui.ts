@@ -4,7 +4,7 @@ import { immer } from 'zustand/middleware/immer';
 import { useConnectionStore } from './connection';
 import { useNodeStore } from './node';
 
-export type GroupCommands = "function" | "variable" | "action"
+export type GroupCommands = "function" | "variable" | "action" | "console"
 export type Space = "function" | "group" | "main";
 export type ContextMenu = "node"|"group"|"stage"
 export interface ActiveSpace{
@@ -13,6 +13,7 @@ export interface ActiveSpace{
 }
 interface UIState {
   selectedNodeIds: string[];
+  confirmValue: string;
   selectedConnectionIds: string[];
   showBluetoothDevices: boolean;
   openCommand: boolean;
@@ -49,6 +50,7 @@ interface UIState {
   setActiveSpace:(space:Space,name:string) => void;
   setActiveCategory:(category:string) => void;
   setShowBluetoothDevices: (state: boolean) => void;
+  setConfirmValue: (value: string) => void;
 }
 
 export const useUIStore = create<UIState>()(
@@ -63,6 +65,7 @@ export const useUIStore = create<UIState>()(
     activeCategory:"all",
     activeSpace:{space:'main',name: "main"},
     contextMenu:"stage",
+    confirmValue: '',
     showBluetoothDevices: false,
     addSelectedNodes: (nodeIds) => {
       set((state) => {
@@ -169,6 +172,12 @@ export const useUIStore = create<UIState>()(
         set((state) => {
             state.showBluetoothDevices = show;
         })
+    },
+    setConfirmValue: (value: string) => {
+        set((state) => {
+            state.confirmValue = value;
+        })
     }
+
   }))
 );

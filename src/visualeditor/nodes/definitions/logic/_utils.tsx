@@ -1,5 +1,5 @@
 import React from 'react';
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '../../../store/node';
 import { DEFAULT_LOGIC_CATEGORY } from '../../../utils/consts';
 import { buildPinPosX, buildPinPosY } from '../../../utils/size-helper';
 import { BaseNode } from '../../BaseNode';
@@ -12,7 +12,7 @@ import { NumberInputPresetHtml } from '../../components/sideEditor/preset/Number
  * 把两个输入转换为一个输出
  */
 export function buildCombinedLogicDefinition(
-  options: Pick<CodeckNodeDefinition, 'name' | 'label'> & {
+  options: Pick<CodeNodeDefinition, 'name' | 'label'> & {
     /**
      * 输入组件预设
      */
@@ -21,7 +21,7 @@ export function buildCombinedLogicDefinition(
     defaultValue?: any;
     outputCode: (input1: string, input2: string) => string;
   }
-): CodeckNodeDefinition {
+): CodeNodeDefinition {
   const width = 150;
   const height = 132;
   const InputPreset = options.InputPreset ?? NumberInputPreset;

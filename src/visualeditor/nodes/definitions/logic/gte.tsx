@@ -1,7 +1,7 @@
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '@/visualeditor';
 import { buildCombinedLogicDefinition } from './_utils';
 
-export const GTENodeDefinition: CodeckNodeDefinition =
+export const GTENodeDefinition: CodeNodeDefinition =
   buildCombinedLogicDefinition({
     name: 'gte',
     label: 'Greater than or equal',

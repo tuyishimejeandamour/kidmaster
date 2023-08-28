@@ -2,7 +2,7 @@ import { NODE_TITLE_HEIGHT } from '../utils/consts';
 import React from 'react';
 import { Group, Rect, Text } from 'react-konva';
 import { useNodeInfo } from '../hooks/useNodeInfo';
-import { CodeckNodeComponentProps } from '../store/node';
+import { CodeNodeComponentProps } from '../store/node';
 import { useUIStore } from '../store/ui';
 import { color } from '../utils/color';
 import { BaseNodeWrapper } from './BaseNodeWrapper';
@@ -10,7 +10,7 @@ import { usePinRender } from './hooks/usePinRender';
 import { useExecInRender } from './hooks/useExecInRender';
 import { useExecOutRender } from './hooks/useExecOutRender';
 
-export const Bigend: React.FC<CodeckNodeComponentProps> = React.memo(
+export const Bigend: React.FC<CodeNodeComponentProps> = React.memo(
   (props) => {
     const nodeId = props.id;
     const { node, definition } = useNodeInfo(nodeId);

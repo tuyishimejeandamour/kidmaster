@@ -1,7 +1,7 @@
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '../../../store/node';
 import { buildCombinedLogicDefinition } from './_utils';
 
-export const SubtractNodeDefinition: CodeckNodeDefinition =
+export const SubtractNodeDefinition: CodeNodeDefinition =
   buildCombinedLogicDefinition({
     name: 'subtract',
     label: 'Subtract',

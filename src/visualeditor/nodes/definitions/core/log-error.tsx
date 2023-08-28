@@ -1,16 +1,15 @@
-import React from 'react';
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '@/visualeditor';
 import { BaseNode } from '../../BaseNode';
 import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
-import { buildNodeHeight, defaultNodeWidth } from '../../../utils/size-helper';
+import { buildNodeHeight, defaultNodeWidth } from '@/visualeditor';
 import { standard } from '../../..';
 
-const width = defaultNodeWidth+20;
-const height = buildNodeHeight(3);
+const width = defaultNodeWidth;
+const height = buildNodeHeight(2);
 
-export const LogErrorNodeDefinition: CodeckNodeDefinition = {
+export const LogErrorNodeDefinition: CodeNodeDefinition = {
   name: 'log-error',
-  label: 'LogError',
+  label: 'Error',
   type: 'function',
   component: BaseNode,
   width,
@@ -24,14 +23,7 @@ export const LogErrorNodeDefinition: CodeckNodeDefinition = {
         width,
         position: 1,
       })
-      .port.input.text(),
-    standard
-      .pin({
-        name: 'error',
-        width,
-        position: 3,
-      })
-      .port.input.base(),
+      .port.input.text()
   ],
   outputs: [standard.execPinOutput(width)],
   code: ({ node, getConnectionInput }) => {

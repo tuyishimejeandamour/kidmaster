@@ -1,13 +1,13 @@
 import { standard } from '../../..';
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '@/visualeditor';
 import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
-import { buildNodeHeight, defaultNodeWidth } from '../../../utils/size-helper';
+import { buildNodeHeight } from '@/visualeditor';
 import { Bigend } from '../../bigend';
 
 const width = 120;
 const height = buildNodeHeight(0.3);
 
-export const BeginNodeDefinition: CodeckNodeDefinition = {
+export const BeginNodeDefinition: CodeNodeDefinition = {
   name: 'begin',
   label: 'Begin',
   type: 'begin',

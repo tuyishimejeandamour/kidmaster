@@ -1,7 +1,7 @@
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '../../../store/node';
 import { buildCombinedLogicDefinition } from './_utils';
 
-export const LTNodeDefinition: CodeckNodeDefinition =
+export const LTNodeDefinition: CodeNodeDefinition =
   buildCombinedLogicDefinition({
     name: 'lt',
     label: 'Less than',

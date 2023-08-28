@@ -2,13 +2,13 @@ import React from 'react';
 import { Rect, Text } from 'react-konva';
 import { useNodeData } from '../hooks/useNodeData';
 import { useNodeInfo } from '../hooks/useNodeInfo';
-import { CodeckNodeComponentProps } from '../store/node';
+import { CodeNodeComponentProps } from '../store/node';
 import { useUIStore } from '../store/ui';
 import { color } from '../utils/color';
-import { BaseNodeWrapper } from './BaseNodeWrapper';
+import { BaseNodeWrapper } from '@/visualeditor';
 import { usePinRender } from './hooks/usePinRender';
 
-export const GroupNode: React.FC<CodeckNodeComponentProps> = React.memo(
+export const GroupNode: React.FC<CodeNodeComponentProps> = React.memo(
   (props) => {
     const nodeId = props.id;
     const { node, definition } = useNodeInfo(nodeId);
@@ -49,7 +49,7 @@ export const GroupNode: React.FC<CodeckNodeComponentProps> = React.memo(
           x={24}
           y={8}
           fontSize={16}
-          text={`group ${1}`}
+          text={node.displayName}
           width={width}
           height={34}
           fill="white"

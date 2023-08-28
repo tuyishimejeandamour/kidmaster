@@ -1,7 +1,7 @@
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '../../../store/node';
 import { buildCombinedLogicDefinition } from './_utils';
 
-export const MultiplyNodeDefinition: CodeckNodeDefinition =
+export const MultiplyNodeDefinition: CodeNodeDefinition =
   buildCombinedLogicDefinition({
     name: 'multiply',
     label: 'Multiply',

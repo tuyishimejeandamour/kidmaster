@@ -2,7 +2,7 @@ import { NODE_TITLE_HEIGHT } from '../utils/consts';
 import React from 'react';
 import { Rect, Text,Image } from 'react-konva';
 import { useNodeInfo } from '../hooks/useNodeInfo';
-import { CodeckNodeComponentProps } from '../store/node';
+import { CodeNodeComponentProps } from '../store/node';
 import { useUIStore } from '../store/ui';
 import { BgColor, color } from '../utils/color';
 import { BaseNodeWrapper } from './BaseNodeWrapper';
@@ -12,7 +12,7 @@ import { useExecOutRender } from './hooks/useExecOutRender';
 // import background from '../../assets/background.png'
 // import Konva from 'konva';
 
-export const BaseNode: React.FC<CodeckNodeComponentProps> = React.memo(
+export const BaseNode: React.FC<CodeNodeComponentProps> = React.memo(
   (props) => {
     const nodeId = props.id;
     const { node, definition } = useNodeInfo(nodeId);

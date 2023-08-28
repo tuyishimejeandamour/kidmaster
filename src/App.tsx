@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react'
 import './App.css'
-import { useAppStore } from './store/app'
 import {
   Route,
   HashRouter,
@@ -10,29 +8,12 @@ import Header from './components/header/header'
 import Dashboard from './dashboard'
 import Editor from './visualeditor/editor'
 import CommandPanel from './components/commands'
-import SettingsActions from './visualeditor/components/sidebar/edit';
 import 'allotment/dist/style.css';
+import Setting from "@/settings";
 
 
 
 function App() {
-  const { showSidebar, setShowSidebar } = useAppStore()
-
-  const handleKeyPress = (event: KeyboardEvent) => {
-    event.preventDefault()
-    if (event.ctrlKey && event.key == "b") {
-      setShowSidebar(!showSidebar)
-    }
-  }
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress)
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress)
-
-    }
-
-  }, [])
   return (
     <HashRouter>
       <div className="relative flex flex-col w-full h-screen bg-[#474952fa]">
@@ -41,7 +22,7 @@ function App() {
           <Routes>
             <Route path="/"   element={<Dashboard />} />
             <Route path="/editor" element={<Editor />} />
-            <Route path="/settings" element={<SettingsActions />} />
+            <Route path="/settings" element={<Setting />} />
           </Routes>
         </div>
       </div>

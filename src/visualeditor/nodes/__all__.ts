@@ -1,14 +1,10 @@
-import { EchoNodeDefinition } from './definitions/components/echo';
-import { AlertNodeDefinition } from './definitions/core/alert';
 import { BeginNodeDefinition } from './definitions/core/begin';
 import { DelayNodeDefinition } from './definitions/core/delay';
-import { ForEachNodeDefinition } from './definitions/core/foreach';
 import { IfNodeDefinition } from './definitions/core/if';
 import { IncludesNodeDefinition } from './definitions/core/includes';
 import { LogNodeDefinition } from './definitions/core/log';
 import { LogErrorNodeDefinition } from './definitions/core/log-error';
 import { LoopNodeDefinition } from './definitions/core/loop';
-import { SleepNodeDefinition } from './definitions/core/sleep';
 import { TimerNodeDefinition } from './definitions/core/timer';
 import { AddNodeDefinition } from './definitions/logic/add';
 import { AnlNodeDefinition } from './definitions/logic/anl';
@@ -32,16 +28,13 @@ import { GroupBeginNodeDefinition } from './definitions/groupBegin'
 export const builtinNodeDefinition = {
   // Core
   BeginNodeDefinition,
-  ForEachNodeDefinition,
   IfNodeDefinition,
   IncludesNodeDefinition,
   LogErrorNodeDefinition,
   LogNodeDefinition,
   VarGetNodeDefinition,
   VarSetNodeDefinition,
-  AlertNodeDefinition,
   LoopNodeDefinition,
-  SleepNodeDefinition,
   TimerNodeDefinition,
 
   // Logic
@@ -61,7 +54,6 @@ export const builtinNodeDefinition = {
 
   //components
   DelayNodeDefinition,
-  EchoNodeDefinition,
 
   //grouping
   GroupNodeDefinition,

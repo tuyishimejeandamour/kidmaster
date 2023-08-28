@@ -159,7 +159,7 @@ const VariableCommands: React.FC<{ onNodeClick: (nodeName: string, data?: Record
                                                     }
                                                 />
                                             </div>
-                                            <div className='w-8 h-8 flex items-center' title='delete variable' onClick={() => handleDelete(item)}>
+                                            <div className='w-8 h-8 flex items-center' data-title='delete variable' onClick={() => handleDelete(item)}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-gray-300 hover:cursor-pointer hover:text-red-500" fill="currentcolor" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z" /><path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" /></svg>
                                             </div>
                                         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CodeckNodeDefinition } from '../../store/node';
+import { CodeNodeDefinition } from '../../store/node';
 import { DEFAULT_CORE_CATEGORY } from '../../utils/consts';
 import { buildNodeHeight } from '../../utils/size-helper';
 import { standard } from '../..';
@@ -8,7 +8,7 @@ import { VariableSetNode } from '../VariableSetNode';
 const width = 160;
 const height = buildNodeHeight(2);
 
-export const VarSetNodeDefinition: CodeckNodeDefinition = {
+export const VarSetNodeDefinition: CodeNodeDefinition = {
   name: 'varset',
   label: 'Set Variable',
   type: 'function',

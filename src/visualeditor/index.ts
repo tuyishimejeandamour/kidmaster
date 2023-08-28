@@ -2,7 +2,7 @@ import 'immer';
 
 export { FlowEditor } from './components/FlowEditor';
 export { regNode } from './store/node';
-export type { CodeckNodeDefinition } from './store/node';
+export type { CodeNodeDefinition } from './store/node';
 export { CodeCompiler } from './code/compiler';
 export {
   variableTypes,

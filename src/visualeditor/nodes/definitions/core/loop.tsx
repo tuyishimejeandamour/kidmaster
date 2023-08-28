@@ -1,5 +1,5 @@
 import React from 'react';
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '../../../store/node';
 import { BaseNode } from '../../BaseNode';
 import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
 import { buildNodeHeight, defaultNodeWidth } from '../../../utils/size-helper';
@@ -8,7 +8,7 @@ import { standard } from '../../..';
 const width = defaultNodeWidth;
 const height = buildNodeHeight(2);
 
-export const LoopNodeDefinition: CodeckNodeDefinition = {
+export const LoopNodeDefinition: CodeNodeDefinition = {
   name: 'loop',
   label: 'Loop',
   type: 'function',

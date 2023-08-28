@@ -1,7 +1,7 @@
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '../../../store/node';
 import { buildCombinedLogicDefinition } from './_utils';
 
-export const DividedNodeDefinition: CodeckNodeDefinition =
+export const DividedNodeDefinition: CodeNodeDefinition =
   buildCombinedLogicDefinition({
     name: 'divided',
     label: 'Divided',

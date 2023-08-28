@@ -103,7 +103,7 @@ const ContextMenu: React.FC = React.memo(() => {
               </li>
             }
             {
-              selectedNodeIds[0] != "$begin"&& selectedNodeIds[0] != "groubBegin" && (
+              selectedNodeIds[0] != "$begin"&& selectedNodeIds[0] != "groupBegin" && (
                 <li className='w-full bg-transparent select-none h-7 px-1 rounded-md flex items-center hover:cursor-pointer hover:bg-gray-300/50 ' onClick={() => handleCopyNode()}>
                   <div className='flex-1 text-[12px] capitalize select-none ' >Copy</div>
                   <div className='w-auto flex items-center justify-center px-1 text-[11px]'>
@@ -118,7 +118,7 @@ const ContextMenu: React.FC = React.memo(() => {
               <div className='w-auto'></div>
             </li>
             {
-              selectedNodeIds[0] != "$begin" && selectedNodeIds[0] != "groubBegin" && (
+              selectedNodeIds[0] != "$begin" && selectedNodeIds[0] != "groupBegin" && (
                 <li className='w-full bg-transparent select-none h-7 px-1 rounded-md flex items-center hover:cursor-pointer hover:bg-gray-300/50 ' onClick={() => handleDelNode()}>
                   <div className='flex-1 text-[12px] capitalize select-none ' >Delete</div>
                   <div className='w-auto flex items-center justify-center px-1 text-[11px]'>

@@ -1,7 +1,7 @@
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '@/visualeditor';
 import { buildCombinedLogicDefinition } from './_utils';
 
-export const LTENodeDefinition: CodeckNodeDefinition =
+export const LTENodeDefinition: CodeNodeDefinition =
   buildCombinedLogicDefinition({
     name: 'lte',
     label: 'Less than or equal',

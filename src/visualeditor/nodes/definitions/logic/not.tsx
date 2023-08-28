@@ -1,4 +1,4 @@
-import { CodeckNodeDefinition } from '../../../store/node';
+import { CodeNodeDefinition } from '../../../store/node';
 import { DEFAULT_LOGIC_CATEGORY } from '../../../utils/consts';
 import {
   buildNodeHeight,
@@ -16,7 +16,7 @@ const height = buildNodeHeight(2);
 /**
  * 逻辑或
  */
-export const NotNodeDefinition: CodeckNodeDefinition = {
+export const NotNodeDefinition: CodeNodeDefinition = {
   name: 'not',
   label: 'Not',
   type: 'logic',
