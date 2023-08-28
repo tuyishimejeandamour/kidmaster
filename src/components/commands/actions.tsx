@@ -16,7 +16,7 @@ const  ActionsCommands:React.FC<{onNodeClick:(Codename:string) => void}> = React
         matchedNode.length > 0 &&
         entries(groupBy(matchedNode, 'category')).map(
             ([category, items]) => (
-                <div key={category} data-title={category} className={"font-semibold w-full flex flex-col"}>
+                <div key={category} title={category} className={"font-semibold w-full flex flex-col"}>
                     <h2 className='text-xs mb-3 ml-2'>{category}</h2>
                     <div className='flex flex-wrap w-full gap-2 '>
                         {items.map((item) => (

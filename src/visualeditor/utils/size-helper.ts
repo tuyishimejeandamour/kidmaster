@@ -14,16 +14,6 @@ export function buildPinX(width:number){
   return width /2
 }
 
-/**
- * 构建pin的y坐标位置，1执行位。如果上一个节点拥有输入内容则跳过一个位置
- *
- * @example
- * 0 - 16
- * 1 - 50
- * 2 - 70
- * 3 - 90
- * ...
- */
 export function buildPinPosY(position: number) {
   return (
     position * pinHeight + 16 + (position > 0 ? NODE_TITLE_HEIGHT - 18 : 0)
@@ -37,16 +27,9 @@ export function buildPinY(position:number,type:"output"|"input"){
 
   return position + 6
 }
-/**
- * 节点默认宽度
- */
+
 export const defaultNodeWidth = 180;
-/**
- * 根据所需要的空间计算高度(基于BaseNode形式计算出的)
- * 1 - 70
- * 2 - 90
- * 4 - 130
- */
+
 export function buildNodeHeight(slotNum: number) {
   slotNum = Math.max(slotNum, 0);
 
