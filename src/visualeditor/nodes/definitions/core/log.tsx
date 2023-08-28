@@ -2,10 +2,10 @@ import React from 'react';
 import { CodeNodeDefinition } from '@/visualeditor';
 import { BaseNode } from '../../BaseNode';
 import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
-import { buildNodeHeight, defaultNodeWidth } from '@/visualeditor';
+import { buildNodeHeight, DEFAULT_NODE_WIDTH } from '@/visualeditor';
 import { standard } from '../../..';
 
-const width = defaultNodeWidth+20;
+const width = DEFAULT_NODE_WIDTH+20;
 const height = buildNodeHeight(2);
 
 export const LogNodeDefinition: CodeNodeDefinition = {

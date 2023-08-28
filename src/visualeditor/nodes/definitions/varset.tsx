@@ -1,7 +1,7 @@
 import React from 'react';
-import { CodeNodeDefinition } from '../../store/node';
+import { CodeNodeDefinition } from '@/visualeditor';
 import { DEFAULT_CORE_CATEGORY } from '../../utils/consts';
-import { buildNodeHeight } from '../../utils/size-helper';
+import { buildNodeHeight } from '@/visualeditor';
 import { standard } from '../..';
 import { VariableSetNode } from '../VariableSetNode';
 

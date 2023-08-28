@@ -4,7 +4,6 @@ import React, { PropsWithChildren, useRef } from 'react';
 import { Group } from 'react-konva';
 import { Space, useUIStore } from '../store/ui';
 import { useMemoizedFn } from 'ahooks';
-import { useNodeInfo } from '../hooks/useNodeInfo';
 
 export const BaseNodeWrapper: React.FC<
   PropsWithChildren<{

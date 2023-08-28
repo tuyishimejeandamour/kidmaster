@@ -3,6 +3,9 @@ export const STANDARD_PIN_EXEC_IN = '$pin_exec_in';
 export const STANDARD_PIN_EXEC_OUT = '$pin_exec_out';
 
 export const NODE_TITLE_HEIGHT = 32;
+export const PIN_HEIGHT = 20;
+export const DEFAULT_NODE_WIDTH = 180;
+
 
 export const DEFAULT_CORE_CATEGORY = 'Core';
 

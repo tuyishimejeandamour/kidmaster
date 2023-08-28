@@ -5,9 +5,9 @@ import {
 import React, { useCallback } from 'react';
 import { Group, Text } from 'react-konva';
 import { useEditValue } from '../../../hooks/useEditValue';
-import { defaultNodeWidth } from '../../../utils/size-helper';
+import { DEFAULT_NODE_WIDTH } from '@/visualeditor';
 
-const defaultWidth = defaultNodeWidth - 8;
+const defaultWidth = DEFAULT_NODE_WIDTH - 8;
 const defaultHeight = 16;
 
 export interface NodeInputProps<T = any> {

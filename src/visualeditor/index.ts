@@ -7,12 +7,12 @@ export { CodeCompiler } from './code/compiler';
 export {
   variableTypes,
   STANDARD_PIN_EXEC_IN,
+  DEFAULT_NODE_WIDTH,
   STANDARD_PIN_EXEC_OUT,
 } from './utils/consts';
 export {
   buildPinPosX,
   buildPinPosY,
-  defaultNodeWidth,
   buildNodeHeight,
 } from './utils/size-helper';
 export { formatFunctionIndent } from './utils/string-helper';

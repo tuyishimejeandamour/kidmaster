@@ -10,12 +10,11 @@ import {
   TextInputPreset,
 } from '@/visualeditor';
 import { CodeNodePinDefinition, CodeNodeDefinition } from '../store/node';
-import { STANDARD_PIN_EXEC_IN, STANDARD_PIN_EXEC_OUT } from './consts';
+import { STANDARD_PIN_EXEC_IN,DEFAULT_NODE_WIDTH, STANDARD_PIN_EXEC_OUT } from './consts';
 import {
   buildNodeHeight,
   buildPinPosX,
-  buildPinPosY,
-  defaultNodeWidth,
+  buildPinPosY
 } from './size-helper';
 import {
   TextAreaInputPreset,
@@ -264,7 +263,7 @@ export const objConstructNode = (
       constructWrapper?: string;
     }
 ): CodeNodeDefinition => {
-  const width = options.width ?? defaultNodeWidth;
+  const width = options.width ?? DEFAULT_NODE_WIDTH;
   const height =
     options.height ?? buildNodeHeight(Math.max(options.inputList.length, 1));
 
@@ -358,7 +357,7 @@ export const objDeconstructNode = (
       }[];
     }
 ): CodeNodeDefinition => {
-  const width = options.width ?? defaultNodeWidth;
+  const width = options.width ?? DEFAULT_NODE_WIDTH;
   const height = buildNodeHeight(Math.max(options.outputList.length, 1));
 
   return {

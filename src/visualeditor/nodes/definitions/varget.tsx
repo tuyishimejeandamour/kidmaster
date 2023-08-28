@@ -1,12 +1,12 @@
-import { CodeNodeDefinition } from '../../store/node';
+import { CodeNodeDefinition } from '@/visualeditor';
 import { DEFAULT_CORE_CATEGORY } from '../../utils/consts';
-import { VariableNode } from '../VariableNode';
+import { VariableNode } from '@/visualeditor';
 import {
   buildNodeHeight,
   buildPinPosX,
   buildPinPosY,
-  defaultNodeWidth,
-} from '../../utils/size-helper';
+  DEFAULT_NODE_WIDTH,
+} from '@/visualeditor';
 
 const width = 130;
 const height = buildNodeHeight(1);

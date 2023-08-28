@@ -2,7 +2,7 @@ import React from 'react';
 import { CodeNodeDefinition } from '../../../store/node';
 import { BaseNode } from '../../BaseNode';
 import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
-import { buildNodeHeight, defaultNodeWidth } from '../../../utils/size-helper';
+import { buildNodeHeight, DEFAULT_NODE_WIDTH } from '../../../utils/size-helper';
 import { formatFunctionIndent, standard } from '../../..';
 
 const width = 150;

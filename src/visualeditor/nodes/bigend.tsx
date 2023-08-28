@@ -5,7 +5,7 @@ import { useNodeInfo } from '../hooks/useNodeInfo';
 import { CodeNodeComponentProps } from '../store/node';
 import { useUIStore } from '../store/ui';
 import { color } from '../utils/color';
-import { BaseNodeWrapper } from './BaseNodeWrapper';
+import { BaseNodeWrapper } from '@/visualeditor';
 import { usePinRender } from './hooks/usePinRender';
 import { useExecInRender } from './hooks/useExecInRender';
 import { useExecOutRender } from './hooks/useExecOutRender';

@@ -1,10 +1,10 @@
 import { standard } from '../../..';
 import { CodeNodeDefinition } from '@/visualeditor';
 import { DEFAULT_CORE_CATEGORY } from '../../../utils/consts';
-import { buildNodeHeight, defaultNodeWidth } from '@/visualeditor';
+import { buildNodeHeight, DEFAULT_NODE_WIDTH } from '@/visualeditor';
 import { BaseNode } from '../../BaseNode';
 
-const width = defaultNodeWidth;
+const width = DEFAULT_NODE_WIDTH;
 const height = buildNodeHeight(2);
 
 export const DelayNodeDefinition: CodeNodeDefinition = {

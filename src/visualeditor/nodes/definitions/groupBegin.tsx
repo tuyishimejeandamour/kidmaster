@@ -1,10 +1,10 @@
 import { CodeNodeDefinition } from '@/visualeditor';
 import { DEFAULT_CORE_CATEGORY } from '../../utils/consts';
-import { buildNodeHeight, defaultNodeWidth } from '@/visualeditor';
+import { buildNodeHeight, DEFAULT_NODE_WIDTH } from '@/visualeditor';
 import { standard } from '../..';
 import { GroupStart } from '../GroupBegin';
 
-const width = defaultNodeWidth - 80;
+const width = DEFAULT_NODE_WIDTH - 80;
 const height = buildNodeHeight(0.3);
 
 export const GroupBeginNodeDefinition: CodeNodeDefinition = {

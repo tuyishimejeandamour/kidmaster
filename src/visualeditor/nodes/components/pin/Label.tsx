@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-konva';
-import { defaultNodeWidth } from '../../../utils/size-helper';
+import { DEFAULT_NODE_WIDTH } from '@/visualeditor';
 
 interface PinLabelProps {
   label: string;
@@ -21,7 +21,7 @@ export const PinLabel: React.FC<PinLabelProps> = React.memo((props) => {
       fontSize={14}
       align={props.align}
       verticalAlign={props.verticalAlign}
-      width={props.width || defaultNodeWidth}
+      width={props.width || DEFAULT_NODE_WIDTH}
       height={props.height}
     />
   );
@@ -36,11 +36,11 @@ export const OutputPinLabel: React.FC<{
   /**
    * 因为Pin需要根据宽度定位来对齐右侧(因为渲染是从左到右的，需要宽度提前定位)
    * 一般为节点宽度的一半
-   * @default number defaultNodeWidth / 2
+   * @default number DEFAULT_NODE_WIDTH / 2
    */
   width?: number;
 }> = React.memo((props) => {
-  const defaultLabelWidth = defaultNodeWidth / 2;
+  const defaultLabelWidth = DEFAULT_NODE_WIDTH / 2;
   const width = props.width ?? defaultLabelWidth;
 
   return (
