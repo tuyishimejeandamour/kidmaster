@@ -14,11 +14,11 @@ export const DEFAULT_LOGIC_CATEGORY = 'Logic';
 export const LODASH_CATEGORY = 'Lodash';
 
 export const variableTypes = [
-  'string',
-  'number',
-  'boolean',
-  'object',
-  'array',
+    'string',
+    'number',
+    'boolean',
+    'object',
+    'array',
 ] as const;
 
 export const SHAPE_NAME_OF_NODE = 'node';

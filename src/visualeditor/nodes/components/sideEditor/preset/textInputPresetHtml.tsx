@@ -1,10 +1,10 @@
 import React from 'react';
-import { useNodeDataValue } from '../../../../hooks/useNodeData';
-import { usePinDefinition } from '../../../../hooks/usePinDefinition';
-import { useConnectionStore } from '../../../../store/connection';
-import { BaseInputPresetProps } from '../../preset/types';
-import { NodeInputTextHtml } from '../../input/TextHtml';
-import { renderConnected } from '../../../../utils/standard';
+import {useNodeDataValue} from '../../../../hooks/useNodeData';
+import {usePinDefinition} from '../../../../hooks/usePinDefinition';
+import {useConnectionStore} from '../../../../store/connection';
+import {BaseInputPresetProps} from '../../preset/types';
+import {NodeInputTextHtml} from '../../input/TextHtml';
+import {renderConnected} from '../../../../utils/standard';
 
 export const TextInputPresetHtml: React.FC<BaseInputPresetProps> = React.memo(
     (props) => {
@@ -13,9 +13,9 @@ export const TextInputPresetHtml: React.FC<BaseInputPresetProps> = React.memo(
             props.nodeId,
             props.name
         );
-        const { defaultValue } = usePinDefinition(props.nodeId, props.name) ?? {};
+        const {defaultValue} = usePinDefinition(props.nodeId, props.name) ?? {};
 
-        
+
         return (
             <div className='border-b-[1px] pb-3 border-gray-300'>
 

@@ -1,16 +1,16 @@
-import { toast as Message } from "react-toastify";
-import { useMemoizedFn } from "ahooks";
+import {toast as Message} from "react-toastify";
+import {useMemoizedFn} from "ahooks";
 import Fuse from "fuse.js";
 import Konva from "konva";
-import { values, keys } from "lodash-es";
-import { useRef, useEffect, useMemo } from "react";
-import { useNodeStore, useStageStore, useUIStore, useVariableStore } from "@/visualeditor";
+import {keys, values} from "lodash-es";
+import {useEffect, useMemo, useRef} from "react";
+import {useNodeStore, useStageStore, useUIStore, useVariableStore} from "@/visualeditor";
 
 export function useNodes() {
-    const { nodeDefinition, createNode } = useNodeStore();
-    const {searchValue,activeSpace, search:setSearchValue} = useUIStore();
-    const { getRelativePointerPosition } = useStageStore();
-    const { variableMap } = useVariableStore();
+    const {nodeDefinition, createNode} = useNodeStore();
+    const {searchValue, activeSpace, search: setSearchValue} = useUIStore();
+    const {getRelativePointerPosition} = useStageStore();
+    const {variableMap} = useVariableStore();
     const nodeCreatedPosRef = useRef<Konva.Vector2d | null>(null);
 
 
@@ -33,7 +33,7 @@ export function useNodes() {
                 Message.error('Cannot get pointer position');
                 return;
             }
-                        
+
             createNode(nodeName, nodeCreatedPosRef.current, data);
 
         }
@@ -64,5 +64,5 @@ export function useNodes() {
             ? variableList
             : variableFuse.search(searchValue).map((res) => res.item);
 
-    return { handleCreateNode, matchedNode, matchedVariable, search, searchValue };
+    return {handleCreateNode, matchedNode, matchedVariable, search, searchValue};
 }

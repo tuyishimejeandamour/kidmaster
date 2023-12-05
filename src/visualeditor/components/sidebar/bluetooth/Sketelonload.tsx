@@ -23,8 +23,8 @@ const skeleton = () => {
         )
     })
 }
-export default function ({handleScan}:SkeletonProps) {
-    const { discoveredDevices } = useBluetoothStore()
+export default function ({handleScan}: SkeletonProps) {
+    const {discoveredDevices} = useBluetoothStore()
     const [loading, setLoading] = useState(false)
     const handleScanClick = () => {
         handleScan()

@@ -1,7 +1,8 @@
 import {createNode} from "@/components/console/console";
 import React, {useCallback, useEffect, useRef} from "react";
+import Steps from "@/components/console/steps";
 
-const  ConsoleCommands: React.FC = () => {
+const ConsoleCommands: React.FC = () => {
 
     let staticRef = useRef({
         isAuto: false,
@@ -24,10 +25,10 @@ const  ConsoleCommands: React.FC = () => {
                 console.clear()
             })
         }
-    },[])
+    }, [])
     const onLoad = useCallback(() => {
         let iframe = document.getElementById("preview") as HTMLIFrameElement;
-        let preview:Document;
+        let preview: Document;
         if ("contentDocument" in iframe && iframe.contentDocument) {
             preview = iframe.contentDocument;
         } else if ("contentWindow" in iframe && iframe.contentWindow) {
@@ -46,11 +47,9 @@ const  ConsoleCommands: React.FC = () => {
 
     return (
         <>
-            <iframe onLoad={onLoad} id="preview" src="" seamless width="0" style={{visibility:"hidden"}} height="0"></iframe>
-
-           <div className='flex flex-col w-full mt-4 '>
-               <div id={"console"} />
-           </div>
+            <iframe onLoad={onLoad} id="preview" src="" seamless width="0" style={{visibility: "hidden"}}
+                    height="0"></iframe>
+            <Steps className={"console"}/>
         </>
     )
 

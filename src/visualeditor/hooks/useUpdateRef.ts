@@ -1,8 +1,8 @@
-import { useRef, MutableRefObject } from 'react';
+import {MutableRefObject, useRef} from 'react';
 
 export function useUpdateRef<T>(state: T): MutableRefObject<T> {
-  const ref = useRef<T>(state);
-  ref.current = state;
+    const ref = useRef<T>(state);
+    ref.current = state;
 
-  return ref;
+    return ref;
 }

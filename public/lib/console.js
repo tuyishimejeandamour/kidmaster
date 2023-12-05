@@ -11,7 +11,7 @@ function _jj_code_time() {
 
 function _jj_code_parseOutput(place, arr, type) {
     let index = -1;
-    let result = "<div class=\"log-wrap\"><span class=\"log-type__".concat(type, "\">").concat(_jj_code_time(), " [ ").concat(type, " ]:</span>");
+    let result = "<div class=\"log-wrap\"><span class=\"log-type__".concat(type, "\">").concat(" [ ").concat(type, " ]:</span>");
     place.map(function (str) {
         if (str === "%s") {
             index = index + 1;

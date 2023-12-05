@@ -1,7 +1,6 @@
-import Device from "@/bluetooth/device";
 import * as electron from "electron";
 
-export  function insertListItem(device:electron.BluetoothDevice,index: number,handleClick:Function): void {
+export function insertListItem(device: electron.BluetoothDevice, index: number, handleClick: Function): void {
     const parentUl = document.querySelector('#devices') as HTMLUListElement; // Replace with your actual ul class name
     const li = document.createElement('li');
     li.className = 'border-gray-400 flex flex-row mb-2';

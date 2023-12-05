@@ -1,9 +1,9 @@
-import { create } from 'zustand';
+import {create} from 'zustand';
 
 interface RegistryState {
-  inited: boolean;
+    inited: boolean;
 }
 
 export const useRegistryStore = create<RegistryState>()((set, get) => ({
-  inited: false,
+    inited: false,
 }));

@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
-import {ipcRenderer} from "electron";
+import {useEffect, useState} from 'react';
 
 export const useOSInfo = () => {
     const [os, setOS] = useState<string>();
 
     useEffect(() => {
         (async () => {
-            if(navigator) {
+            if (navigator) {
                 try {
                     const osData = (navigator.userAgent.indexOf('Linux') > -1) ? 'linux' : (navigator.userAgent.indexOf('Mac') > -1) ? 'mac' : (navigator.userAgent.indexOf('Win') > -1) ? 'windows' : 'unknown';
                     setOS(osData);

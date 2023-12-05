@@ -210,7 +210,7 @@ app.whenReady().then(async () => {
       bluetooth_state_manager.setCallback(callback);
 
       if (bluetooth_state_manager.mode == "discovery"){
-
+        console.log(devices_list)
         console.log(`(${devices_list.length}) devices found. [${devices_list.length - bluetooth_discovery_device_list.length} new]`)
 
         bluetooth_discovery_device_list = devices_list;

@@ -1,23 +1,23 @@
-import { CodeNodePinDefinition } from '../store/node';
-import { useNodeInfo } from './useNodeInfo';
+import {CodeNodePinDefinition} from '../store/node';
+import {useNodeInfo} from './useNodeInfo';
 
 /**
  * 获取Pin的定义
  */
 export function usePinDefinition(
-  nodeId: string,
-  pinName: string
+    nodeId: string,
+    pinName: string
 ): CodeNodePinDefinition | null {
-  const { definition } = useNodeInfo(nodeId);
+    const {definition} = useNodeInfo(nodeId);
 
-  if (!definition) {
-    return null;
-  }
+    if (!definition) {
+        return null;
+    }
 
-  const pinDef =
-    definition.inputs.find((input) => input.name === pinName) ??
-    definition.outputs.find((output) => output.name === pinName) ??
-    null;
+    const pinDef =
+        definition.inputs.find((input) => input.name === pinName) ??
+        definition.outputs.find((output) => output.name === pinName) ??
+        null;
 
-  return pinDef;
+    return pinDef;
 }

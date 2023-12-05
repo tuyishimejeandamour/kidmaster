@@ -1,20 +1,21 @@
 import React from 'react'
 
-export default function Recent() {
+export default function Recent(props: { img: string, message: string }) {
+    const [show, setShow] = React.useState(false)
+
     return (
-        <div className='w-64  flex flex-col  bg-[rgba(255,255,255,0.2)]   rounded-lg ' >
-            <div className='w-full  bg-black h-40 rounded-t-lg'>
-
-            </div>
-            <div className='flex-1 px-2 py-2 flex justify-between'>
-                <div className='flex flex-col'>
-                    <div>LED blinking</div>
-                    <time className='text-xs py-[2px] text-gray-500' >edited 12 minutes ago</time>
+        <div className={"relative"} onMouseOver={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+            .<img className="h-auto max-w-full rounded-lg" src={props.img} alt=""/>
+            {
+                show &&
+                <div
+                    className={"absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-[#20232a] to-transparent rounded-lg"}>
+                    <div className={"flex flex-col justify-end h-full p-2"}>
+                        <p>{props.message}</p>
+                    </div>
                 </div>
-                <div className=''>
+            }
 
-                </div>
-            </div>
         </div>
     )
 }

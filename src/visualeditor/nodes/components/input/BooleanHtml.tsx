@@ -1,22 +1,22 @@
 import React from 'react';
-import { NodeInputProps } from './Base';
+import {NodeInputProps} from './Base';
 
 const size = 10;
 
 export const NodeInputBooleanHtml: React.FC<NodeInputProps> = React.memo(
-  (props) => {
-    const { x, y, value, onChange } = props;
+    (props) => {
+        const {x, y, value, onChange} = props;
 
-    return (
-      <div
-        
-       style={{width:size,height:size}}
+        return (
+            <div
 
-        onClick={(e) => {
-          onChange(!value);
-        }}
-      />
-    );
-  }
+                style={{width: size, height: size}}
+
+                onClick={(e) => {
+                    onChange(!value);
+                }}
+            />
+        );
+    }
 );
 NodeInputBooleanHtml.displayName = 'NodeInputBooleanHtml';
