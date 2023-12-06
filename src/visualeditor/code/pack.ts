@@ -26,8 +26,6 @@ export async function packRepo(options: {
         'README.md',
         `## ${projectName}
 
-Generate by [codeck](https://codeck.moonrailgun.com/)
-
 ### Usage
 
 \`\`\`bash
@@ -106,9 +104,7 @@ npm start
         );
     }
 
-    const content = zip.generateAsync({type: 'blob'});
-
-    return content;
+    return zip.generateAsync({type: 'blob'});
 }
 
 async function getAllDependencies(

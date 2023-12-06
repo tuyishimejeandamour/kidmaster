@@ -9,6 +9,7 @@ import {LogNodeDefinition} from '../nodes/definitions/core/log';
 import {BEGIN_NODE_ID} from '../utils/consts';
 import {useUIStore} from './ui';
 import React from "react";
+import generateUUID from "@/visualeditor/utils/uuidGenerator";
 
 export type CodeNodeType = 'begin' | 'return' | 'function' | 'logic' | 'call' | 'grouping';
 
@@ -126,7 +127,7 @@ const buildDefaultNodeMap = () =>
             },
         },
         log: {
-            id: 'fdjsof',
+            id: generateUUID(),
             name: LogNodeDefinition.name,
             position: {
                 x: 200,
@@ -202,10 +203,10 @@ export const useNodeStore = create<NodeState>()(
         createNode: (nodeName, position, data) => {
             set((state) => {
                 const activeSpace = useUIStore.getState().activeSpace
-                let id = generateNodeId();
+                let id = generateUUID();
                 if (nodeName.includes("group")) {
                     id = `group_${nodeName.split("_")[1]}_${id}`
-                    const another = `$gb_${generateNodeId()}`
+                    const another = `$gb_${generateUUID()}`
                     state.nodeMap[another] = {
                         id: another,
                         name: "groupBegin",

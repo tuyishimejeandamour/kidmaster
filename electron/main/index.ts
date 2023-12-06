@@ -7,6 +7,7 @@ import {update} from './update'
 import {spawn} from 'child_process';
 import ScanData = Bluetooth.ScanData;
 import * as child_process from "child_process";
+import {ChimeStorage} from "../storage/Index";
 
 
 process.env.DIST_ELECTRON = join(__dirname, '../')
@@ -327,4 +328,23 @@ ipcMain.handle('open-win', async (_, arg) => {
     await childWindow.loadFile(indexHtml, {hash: arg})
   }
 })
+
+// storage initialization
+const storage = new ChimeStorage({
+  encryption: true,
+  states: {
+    defaultSettings: {
+      theme: 'dark',
+      language: 'en',
+    },
+  },
+});
+
+storage.init();
+
+ipcMain.on('update-state', (event, key, data) => {
+  storage.setState(key, data);
+});
+
+
 

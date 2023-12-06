@@ -15,8 +15,8 @@ export interface ConnectInfo {
 }
 
 export type PinDirection =
-    | 'out-in' // 输出
-    | 'in-out'; // 输入
+    | 'out-in'
+    | 'in-out';
 
 interface ConnectionState {
     connections: ConnectInfo[];
@@ -98,28 +98,22 @@ export const useConnectionStore = create<ConnectionState>()(
                 fromNodeDirection,
             } = workingConnection;
 
-            // 正在处于连接状态
             if (toNodeId === fromNodeId) {
-                // 连接到相同节点
                 cancelConnect();
                 return;
             }
 
             if (toNodeDirection === fromNodeDirection) {
-                // 相同方向
                 cancelConnect();
                 return;
             }
 
             if (toNodePinType !== fromNodePinType) {
-                // 不匹配(譬如exec和port连接)
                 cancelConnect();
                 return;
             }
 
             set((state) => {
-                // exec只能一对一
-                // port能够一对多(但是不能多对1)
                 if (fromNodePinType === 'exec') {
                     const list = state.connections.filter(
                         (conn) =>
@@ -137,7 +131,6 @@ export const useConnectionStore = create<ConnectionState>()(
                         state.connections = without(state.connections, ...list); // 移除不能多连的旧的连线
                     }
                 } else if (fromNodePinType === 'port') {
-                    // 如果是port类型，则需要移除实际connection的to端口的其他连线
                     let list: ConnectInfo[] = [];
                     if (fromNodeDirection === 'out-in') {
                         list = state.connections.filter(
@@ -158,7 +151,6 @@ export const useConnectionStore = create<ConnectionState>()(
                     }
                 }
 
-                // 推入最新的连线
                 state.connections.push(
                     fromNodeDirection === 'out-in'
                         ? {
@@ -179,7 +171,6 @@ export const useConnectionStore = create<ConnectionState>()(
                         }
                 );
 
-                // 连接线去重
                 state.connections = uniqBy(state.connections, (item) =>
                     [
                         item.fromNodeId,

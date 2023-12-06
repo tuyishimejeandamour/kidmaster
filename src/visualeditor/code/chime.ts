@@ -98,7 +98,6 @@ export class CodeCompiler {
             return null;
         }
 
-        // Hardcode for varget
         if (fromNode.name === VarGetNodeDefinition.name) {
             return fromNode.data?.name ?? '';
         }
@@ -192,7 +191,6 @@ export class CodeCompiler {
             }
         });
 
-        // generate code
         let prepareCode = '';
         const importEntries = Object.entries<[string, string][]>(imports);
         if (Array.isArray(importEntries) && importEntries.length > 0) {
@@ -200,7 +198,6 @@ export class CodeCompiler {
                 importEntries
                     .map(([module, members]) => {
                         if (this.moduleType === 'commonjs') {
-                            // commonjs
                             if (members.length === 0) {
                                 return `require('${module}');`;
                             }

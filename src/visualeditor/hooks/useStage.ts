@@ -1,6 +1,6 @@
 import {useMemoizedFn} from 'ahooks';
 import Konva from 'konva';
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useStageStore} from '../store/stage';
 
 export function useStage(

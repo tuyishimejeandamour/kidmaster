@@ -27,22 +27,11 @@ interface UIState {
     activeSpace: ActiveSpace;
     contextMenu: ContextMenu
     search: (value: string) => void;
-
-
     addSelectedNodes: (nodeIds: string[]) => void;
     switchSelectNodes: (nodeIds: string[]) => void;
     addSelectedConnections: (connectionIds: string[]) => void;
-    /**
-     * 清除选中状态
-     */
     clearSelectedStatus: () => void;
-    /**
-     * 删除选中节点和连线
-     */
     deleteAllSelected: () => void;
-    /**
-     * 移动所有选中
-     */
     moveSelected: (deltaX: number, deltaY: number) => void;
     openCommandModal: (state: boolean, ref?: any) => void;
     setShowSideEditor: (state: boolean) => void;

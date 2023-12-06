@@ -4,15 +4,12 @@ import {ipcRenderer} from "electron";
 import {useBluetoothStore} from "@/store/bluetoothStore";
 import {showDesktopNotification} from "../../../../../electron/main/notification";
 import {asyncForEach} from "@/bluetooth/bluetoothPair";
-
 interface Props {
-    deviceId: string
+    deviceId:string
 }
-
-export default function RenderBluetoothDevice({deviceId}: Props) {
-    const [pairedDevice, setPairedDevices] = React.useState<PairedDevice>(new PairedDevice());
-    const {setLastConnectedDevice, setPairedDevice, defaultBot} = useBluetoothStore()
-
+export default function RenderBluetoothDevice ({deviceId}:Props) {
+    const [pairedDevice] = React.useState<PairedDevice>(new PairedDevice());
+    const {setLastConnectedDevice,setPairedDevice, defaultBot} = useBluetoothStore()
     function requestDevicePair(deviceId: string) {
 
 
@@ -58,9 +55,6 @@ export default function RenderBluetoothDevice({deviceId}: Props) {
             setPairedDevice(pairedDevice);
             showDesktopNotification("Paired successfully", "pair-success");
 
-            $(".device-developer span.device_name").text(`Device Name: ${pairedDevice.device_reference.name}`)
-            $(".device-developer > span.deviceId").text(`Device ID: ${pairedDevice.device_reference.id}`)
-
             server?.getPrimaryServices().then(function (services) {
                 console.log("SERVICES", services);
             })
@@ -86,12 +80,10 @@ export default function RenderBluetoothDevice({deviceId}: Props) {
 
                     console.log(pairedDevice);
 
-                    getBulbColor(true);
-                    getBulbPowerState(true);
+
 
                 }
 
-                doAsyncForEach();
 
             })
 
@@ -101,13 +93,11 @@ export default function RenderBluetoothDevice({deviceId}: Props) {
         })
 
     }
-}
 
-
-return (
-    <div className="flex mx-auto w-full items-center justify-center">
-        <ul className="flex flex-col p-4 text-gray-300">
-        </ul>
-    </div>
-)
+    return (
+      <div className="flex mx-auto w-full items-center justify-center">
+          <ul className="flex flex-col p-4 text-gray-300">
+          </ul>
+      </div>
+  )
 }

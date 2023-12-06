@@ -12,7 +12,7 @@ export interface ProjectStory {
 export interface ProjectCategory {
     id: string;
     name: string;
-    description: string;
+    color: string;
     image: string;
 }
 

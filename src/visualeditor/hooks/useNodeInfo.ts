@@ -1,8 +1,5 @@
 import {CodeNode, CodeNodeDefinition, useNodeStore} from '../store/node';
 
-/**
- * 获取节点信息
- */
 export function useNodeInfo(nodeId: string): {
     node: CodeNode | null;
     definition: CodeNodeDefinition | null;

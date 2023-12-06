@@ -1,8 +1,5 @@
 import {useCallback, useEffect, useState} from 'react';
 
-/**
- * 编辑模式的状态管理，外部变化会重置内部状态
- */
 export const useEditValue = <T = any>(
     value: T,
     onChange: (val: T) => void

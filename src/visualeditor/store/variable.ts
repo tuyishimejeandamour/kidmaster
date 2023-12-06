@@ -1,6 +1,6 @@
 import {create} from 'zustand';
 import {immer} from 'zustand/middleware/immer';
-import {variableTypes} from '../utils/consts';
+import {variableTypes} from '@/visualeditor';
 
 type VariableType = typeof variableTypes[number];
 
@@ -30,7 +30,6 @@ export const useVariableStore = create<VariableState>()(
                     console.warn('This var has been created');
                     return;
                 }
-
                 state.variableMap[name] = {
                     name,
                     type,
@@ -42,7 +41,6 @@ export const useVariableStore = create<VariableState>()(
             set((state) => {
                 delete state.variableMap[name];
             });
-            // TODO: 删除node
         },
     }))
 );

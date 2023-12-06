@@ -17,17 +17,9 @@ interface StageState {
     calcAbsolutePositionToRelative: (
         absolutePos: Konva.Vector2d
     ) => Konva.Vector2d;
-    /**
-     * 获取鼠标在视口上的坐标
-     */
     getPointerPosition: () => Konva.Vector2d;
-    /**
-     * 获取鼠标在stage上的坐标
-     */
+
     getRelativePointerPosition: () => Konva.Vector2d;
-    /**
-     * 重置到左上角
-     */
     focus: () => void;
 }
 
@@ -70,9 +62,7 @@ export const useStageStore = create<StageState>((set, get) => ({
             y: position.y / scale.y,
         };
     },
-    /**
-     * 将绝对坐标计算为相对于stage的相对坐标
-     */
+
     calcAbsolutePositionToRelative: (absolutePos) => {
         const {position, unscale} = get();
 
@@ -113,6 +103,6 @@ export const useStageStore = create<StageState>((set, get) => ({
         );
 
         get().setPosition({x: -minPos.x + 40, y: -minPos.y + 40});
-        get().setScale(1); // 重置缩放
+        get().setScale(1);
     },
 }));
