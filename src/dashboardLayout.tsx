@@ -1,59 +1,124 @@
-import React from "react";
-import {useAppStore} from "@/store/app";
+import React, {useRef, useState} from "react";
+import {ProjectCategory, useAppStore} from "@/store/app";
 import {useNavigate} from "react-router-dom";
+import StoryBlock from "@/components/story/storyBlock";
+import { motion } from "framer-motion";
+import Project from "@/dashboard/project";
+
+const animations = {
+    initial: { opacity: 0, x: 100 },
+    animate: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.7,
+            ease: [0.6, -0.05, 0.01, 0.99],
+        }, },
+    exit: {
+        opacity: 0, y: 100
+    },
+};
+const content = (isFirstMount: Boolean) => ({
+    animate: {
+        transition: { staggerChildren: 0.1, delayChildren: isFirstMount ? 0.8 : 0 },
+    },
+});
+
+
 
 export default function DashboardLayout({children}:{children:React.ReactNode}){
     const { setOnDashboard } = useAppStore()
     const router = useNavigate()
+    const [isOpen, setOpen] = useState(false);
+    const data:ProjectCategory[] = [
+        {
+            "id": "1",
+            "name": "Project 1",
+            "image":"../../../public/assests/bot1.png",
+            "color": "bg-orange-500"
+        },
+        {
+            "id": "2",
+            "name": "Project 2",
+            "image":"../../../public/assests/bot2.png",
+            "color": "bg-purple-500"
+        },
+        {
+            "id": "3",
+            "name": "Project 3",
+            "image":"../../../public/assests/bot3.png",
+            "color": "bg-red-500"
+        },
+        {
+            "id": "4",
+            "name": "Project 4",
+            "image":"../../../public/assests/bot4.png",
+            "color": "bg-teal-500"
+
+        }
+    ];
     return (
-        <div className='max-w-screen-2xl flex w-full h-full'>
-            <div className='w-20 ml-3 flex items-center justify-between flex-col'>
-                <div className='w-full items-center flex flex-col'>
-                    <button type="button" onClick={() => {router('/');setOnDashboard(true)}} role="tab" aria-selected="false" id="Pivot37-Tab1" className="relative outline-transparent text-sm font-normal border-0 rounded-2xl cursor-pointer text-center inline-block h-14 bg-transparent ml-0 mb-2 w-14 select-none hover:bg-white" name="My Media" data-content="My Media xx" data-is-focusable="true" tabIndex={-1}>
-            <span className="flex flex-wrap h-full justify-start items-center select-none" data-automationid="splitbuttonprimary">
-              <span className="flex relative w-full h-full ">
-                <span className="flex flex-1 flex-col items-center h-full max-w-full justify-center rounded select-none ">
-                  <span className="relative overflow-hidden fill-zinc-700 ml-0 flex-shrink-0 h-8 w-8 grid place-items-center rounded">
-                    <i data-icon-name="ArrowUpload" aria-hidden="true" className="w-6 h-6 inline-block select-none">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6  fill-gray-800" viewBox="0 0 24 24"><path d="M13 4.05493C17.5 4.55237 21 8.36745 21 13V22H3V13C3 8.36745 6.50005 4.55237 11 4.05493V1H13V4.05493ZM19 20V13C19 9.13401 15.866 6 12 6C8.13401 6 5 9.13401 5 13V20H19ZM12 18C9.23858 18 7 15.7614 7 13C7 10.2386 9.23858 8 12 8C14.7614 8 17 10.2386 17 13C17 15.7614 14.7614 18 12 18ZM12 16C13.6569 16 15 14.6569 15 13C15 11.3431 13.6569 10 12 10C10.3431 10 9 11.3431 9 13C9 14.6569 10.3431 16 12 16ZM12 14C11.4477 14 11 13.5523 11 13C11 12.4477 11.4477 12 12 12C12.5523 12 13 12.4477 13 13C13 13.5523 12.5523 14 12 14Z"></path></svg>
-                    </i>
-                  </span>
-                </span>
-              </span>
-            </span>
-                    </button>
-                    <button type="button" onClick={() => {router('/editor');setOnDashboard(false)}} role="tab" aria-selected="false" id="Pivot37-Tab1" className="relative outline-transparent text-sm font-normal border-0 rounded-2xl cursor-pointer text-center inline-block h-14 bg-transparent ml-0 mb-2 w-14 select-none hover:bg-white" name="My Media" data-content="My Media xx" data-is-focusable="true" tabIndex={-1}>
-            <span className="flex flex-wrap h-full justify-start items-center select-none" data-automationid="splitbuttonprimary">
-              <span className="flex relative w-full h-full ">
-                <span className="flex flex-1 flex-col items-center h-full max-w-full justify-center rounded select-none ">
-                  <span className="relative overflow-hidden fill-zinc-700 ml-0 flex-shrink-0 h-8 w-8 grid place-items-center rounded">
-                    <i data-icon-name="ArrowUpload" aria-hidden="true" className="w-6 h-6 inline-block select-none">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="text-white w-6 h-6 fill-gray-800" viewBox="0 0 24 24" width="24" height="24"><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z" ></path></svg>
-                    </i>
-                  </span>
-                </span>
-              </span>
-            </span>
-                    </button>
+        <>
+        <motion.div
+            className='max-w-screen-2xl flex w-full h-full'
+            variants={animations}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 2 }}
+        >
+            <div
+                className='flex-1 w-full  flex  rounded-3xl relative  overflow-x-hidden  bg-[#ffffff0c] -mt-1  mr-4 ml-4  h-[calc(100%-10px)] shadow-xl '>
+                <div className={"flex-1  flex-col flex px-4 pt-10  h-full overflow-auto"}>
+                    <div className="main-con w-full border-t border-b border-gray-500/20">
+                        <div className="mx-auto max-w-4xl">
+                            <motion.div
+                                className="grid relative grid-cols-1 lg:px-0 px-8 lg:grid-cols-3 p-contain "
+                                initial="initial"
+                                animate="animate"
+                                variants={content(true)}
+                            >
+                                {
+                                    data.map((project) => {
+                                        return <Project key={project.id} project={project}/>
+                                    })
+                                }
+
+
+                            </motion.div>
+                        </div>
+                    </div>
+
                 </div>
-                <button type="button" onClick={() =>{router('/settings'); setOnDashboard(true)}} role="tab" aria-selected="false" id="Pivot37-Tab1" className="relative outline-transparent text-sm font-normal border-0 rounded-2xl cursor-pointer text-center inline-block h-14 bg-transparent ml-0 mb-2 w-14 select-none hover:bg-white" name="My Media" data-content="My Media xx" data-is-focusable="true" tabIndex={-1}>
-          <span className="flex flex-wrap h-full justify-start items-center select-none" data-automationid="splitbuttonprimary">
-            <span className="flex relative w-full h-full ">
-              <span className="flex flex-1 flex-col items-center h-full max-w-full justify-center rounded select-none ">
-                <span className="relative overflow-hidden fill-zinc-700 ml-0 flex-shrink-0 h-8 w-8 grid place-items-center rounded">
-                  <i data-icon-name="ArrowUpload" aria-hidden="true" className="w-6 h-6 inline-block select-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="text-white w-6 h-6  fill-gray-800" viewBox="0 0 24 24"><path d="M8.68735 4.00008L11.294 1.39348C11.6845 1.00295 12.3176 1.00295 12.7082 1.39348L15.3148 4.00008H19.0011C19.5533 4.00008 20.0011 4.4478 20.0011 5.00008V8.68637L22.6077 11.293C22.9982 11.6835 22.9982 12.3167 22.6077 12.7072L20.0011 15.3138V19.0001C20.0011 19.5524 19.5533 20.0001 19.0011 20.0001H15.3148L12.7082 22.6067C12.3176 22.9972 11.6845 22.9972 11.294 22.6067L8.68735 20.0001H5.00106C4.44877 20.0001 4.00106 19.5524 4.00106 19.0001V15.3138L1.39446 12.7072C1.00393 12.3167 1.00393 11.6835 1.39446 11.293L4.00106 8.68637V5.00008C4.00106 4.4478 4.44877 4.00008 5.00106 4.00008H8.68735ZM6.00106 6.00008V9.5148L3.51578 12.0001L6.00106 14.4854V18.0001H9.51578L12.0011 20.4854L14.4863 18.0001H18.0011V14.4854L20.4863 12.0001L18.0011 9.5148V6.00008H14.4863L12.0011 3.5148L9.51578 6.00008H6.00106ZM12.0011 16.0001C9.79192 16.0001 8.00106 14.2092 8.00106 12.0001C8.00106 9.79094 9.79192 8.00008 12.0011 8.00008C14.2102 8.00008 16.0011 9.79094 16.0011 12.0001C16.0011 14.2092 14.2102 16.0001 12.0011 16.0001ZM12.0011 14.0001C13.1056 14.0001 14.0011 13.1047 14.0011 12.0001C14.0011 10.8955 13.1056 10.0001 12.0011 10.0001C10.8965 10.0001 10.0011 10.8955 10.0011 12.0001C10.0011 13.1047 10.8965 14.0001 12.0011 14.0001Z"></path></svg>
-                  </i>
-                </span>
-              </span>
-            </span>
-          </span>
-                </button>
+                <div className={"w-56 h-full pt-10 flex flex-col   bg-gradient-to-t from-[#ffffff0c] to-[#ffffff0c] backdrop-blur-2xl"}>
+                    <div className={"flex px-8 pb-10 flex-col items-start justify-items-start"}>
+                        <div
+                            className={"w-[70px] h-[70px] rounded-[10px_20px_30px_40px_/_40px_30px_20px_10px] mb-1 flex backdrop-blur-2xl  bg-gradient-to-r from-zinc-300/5 to-zinc-700/75"}>
+                            <div
+                                className="flex w-full items-center justify-between rounded-2xl bg-transparent p-3 shadow-3xl  dark:!bg-navy-700 dark:shadow-none">
+                                <div onClick={() => {
+                                    router('/editor')
+                                }}
+                                     className="mr-4 p-4 rounded-2xl flex items-center justify-center text-gray-600 dark:text-white hover:cursor-pointer bg-blue-600/90">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                              d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 0 1-.657.643 48.39 48.39 0 0 1-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 0 1-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 0 0-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 0 1-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 0 0 .657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 0 0 5.427-.63 48.05 48.05 0 0 0 .582-4.717.532.532 0 0 0-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 0 0 .658-.663 48.422 48.422 0 0 0-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 0 1-.61-.58v0Z"/>
+                                    </svg>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={"gap-5 grid relative grid-cols-2 justify-items-center items-start px-8"}>
+                        {data.map((project) => {
+                            return <StoryBlock key={project.id} project={project}/>
+                        })}
+                    </div>
+                </div>
             </div>
-            <div className='flex-1 mb-2 flex flex-col  py-2 px-4 overflow-x-hidden  bg-[#ffffff0c] -mt-1 rounded-2xl mr-4 ml-2  h-[100%] ' >
-                {children}
-            </div>
-        </div>
+        </motion.div>
+        </>
     )
 
 }

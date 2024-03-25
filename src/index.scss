@@ -1,5 +1,5 @@
 .multiShadow{
-  box-shadow: 5px 5px rgba(170, 171, 170, 0.4), 10px 10px rgba(170, 171, 170, 0.3), 15px 15px rgba(170, 171, 170, 0.2), 20px 20px rgba(170, 171, 170, 0.1), 25px 25px rgba(170, 171, 170, 0.05);
+  box-shadow: 3px 3px rgba(170, 171, 170, 0.4), 6px 6px rgba(170, 171, 170, 0.3), 9px 9px rgba(170, 171, 170, 0.2);
 }
 
 .createProjectButton {
@@ -39,4 +39,28 @@
   100% {
     background-position: 200% 50%;
   }
+}
+
+.bottom-l:before {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  content: "";
+  width: 1px;
+  height: 9px;
+  position: absolute;
+  top: -4px;
+}
+.bottom-l:after {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  content: "";
+  width: 9px;
+  height: 1px;
+  position: absolute;
+  left: -4px;
+}
+.encryption {
+  transition: .5s;
+  mask-image: radial-gradient(300px circle at 0 0, #000 10%, rgba(0, 0, 0, .25), transparent);
+  transform: scale(1.025);
 }
