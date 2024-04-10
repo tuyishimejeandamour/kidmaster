@@ -1,10 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {Popover} from "@arco-design/web-react";
 
 export default function StoryBlock({project}: { project: any }) {
     const router = useNavigate();
-    return (
+    const [visible, setVisible] = useState(false);
 
+    return (
+        <Popover
+            title='Title'
+            popupVisible={visible}
+            onVisibleChange={setVisible}
+            content={
+                <span>
+            <p className={""}>Here is the text content</p>
+            <p style={{ textAlign: 'right', marginTop: 4 }}>
+              <button className={"text-red-600"} onClick={() => setVisible(false)}>Close</button>
+            </p>
+          </span>
+            }
+        >
         <div
             className={"w-full h-[70px] rounded-[10px_20px_30px_40px_/_40px_30px_20px_10px] mb-1 flex backdrop-blur-2xl  bg-gradient-to-r from-zinc-300/5 to-zinc-700/75"}>
             <div
@@ -22,5 +37,6 @@ export default function StoryBlock({project}: { project: any }) {
                 </div>
             </div>
         </div>
+        </Popover>
     )
 }

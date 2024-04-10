@@ -2,8 +2,19 @@ import {useMemo} from 'react';
 import {ConnectInfo, useConnectionStore} from '../store/connection';
 import {CodeNode, useNodeStore} from '../store/node';
 import {useVariableStore, VariableItem} from '@/visualeditor';
+import {PersistStorage} from "@/visualeditor/utils/StorageRender";
+import {useAppStore} from "@/store/app";
 
-interface CodePersistData {
+export function getChimeData(id: string) {
+return PersistStorage.getState(id, 'chime')
+}
+
+export async function loadHistory() {
+    return await PersistStorage.getState('project', 'project')
+}
+
+
+export interface CodePersistData {
     modules: Record<
         string,
         {
@@ -55,10 +66,23 @@ export function saveIntoLocalStorage() {
 }
 
 export function loadFromLocalStorage() {
-    const data = window.localStorage.getItem('codeData');
+    const data = useAppStore.getState().currentProject?.chime;
     if (!data) {
         throw new Error('Cannot load info from localStorage');
     }
-
-    load(JSON.parse(data));
+    console.log()
+    load(data);
 }
+
+export function setCurrentData(data: CodePersistData) {
+    useNodeStore.setState({
+        nodeMap: data.modules.entry.nodeMap,
+    });
+    useConnectionStore.setState({
+        connections: data.modules.entry.connections,
+    });
+    useVariableStore.setState({
+        variableMap: data.modules.entry.variable,
+    });
+}
+

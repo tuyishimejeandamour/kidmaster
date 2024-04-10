@@ -8,9 +8,15 @@ import 'allotment/dist/style.css';
 import Setting from "@/settings";
 import SelectedProject from "@/dashboard/selectedProject";
 import {AnimatePresence} from "framer-motion";
+import {persist} from "@/visualeditor";
+import {useEffect} from "react";
+import {useAppStore} from "@/store/app";
+
+
 
 
 function App() {
+
     return (
         <HashRouter>
             <div className={"relative  bg-gradient-to-br from-[#444554] to-[#080705]"}>

@@ -3,7 +3,6 @@ import {immer} from 'zustand/middleware/immer';
 import Konva from 'konva';
 import {cloneDeep, set as _set, values} from 'lodash-es';
 import {useConnectionStore} from './connection';
-import {generateNodeId} from '../utils/string-helper';
 import {BeginNodeDefinition} from '../nodes/definitions/core/begin';
 import {LogNodeDefinition} from '../nodes/definitions/core/log';
 import {BEGIN_NODE_ID} from '../utils/consts';

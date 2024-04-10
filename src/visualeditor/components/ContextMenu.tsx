@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, {
   PropsWithChildren
 } from 'react';

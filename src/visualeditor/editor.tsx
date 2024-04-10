@@ -1,7 +1,16 @@
 import { Allotment } from 'allotment'
-import { FlowEditor, builtinNodeDefinition, persist, regNode } from './'
+import {
+    FlowEditor,
+    builtinNodeDefinition,
+    persist,
+    regNode,
+    useNodeStore,
+    useVariableStore,
+    useConnectionStore
+} from './'
 import { initRegistry, preventDefault } from '@/registry/init'
 import { values } from 'lodash-es'
+import {useEffect} from "react";
 
 values(builtinNodeDefinition).map(regNode);
 await  initRegistry();

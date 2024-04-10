@@ -1,20 +1,31 @@
-import { ipcRenderer } from 'electron';
+import {ipcRenderer} from 'electron';
 
 type StateData = Record<string, any>;
 
-export class RenderStorage {
+interface StateOptions{
+    path?:string;
+    cypher?:string;
+    chime?:string;
+    project?:string;
+}
+interface InputData {
+    options: StateOptions
+    data: Record<string, any>;
+}
+
+class RenderStorage {
     private states: Record<string, StateData> = {};
 
-    public getState(key: string): StateData | undefined {
+    public async getState(key: string, destination?: string): Promise<StateData | undefined> {
         if (!this.states[key]) {
-            this.requestState(key);
+            return await this.requestState(key, destination);
         }
         return this.states[key];
     }
 
-    public setState(key: string, data: StateData): void {
+    public setState(key: string, data: InputData): void {
         this.states[key] = data;
-        ipcRenderer.send('update-state', key, data);
+        ipcRenderer.invoke('update-state', key, data).catch(console.error);
     }
 
     public onStateUpdate(callback: Function): void {
@@ -24,7 +35,10 @@ export class RenderStorage {
         });
     }
 
-    private requestState(key: string): void {
-        ipcRenderer.send('get-state', key);
+
+    private  requestState(key: string,destination?:string):Promise<StateData>  {
+        return  ipcRenderer.invoke('get-state', key,destination);
     }
 }
+
+export const PersistStorage = new RenderStorage();

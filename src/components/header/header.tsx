@@ -1,15 +1,20 @@
 import Actions from "./actions"
 import {useUIStore} from "@/visualeditor";
 import {useLocation, useNavigate} from "react-router-dom";
+import {useAppStore} from "@/store/app";
 
 function Header() {
 
     const {activeSpace, setActiveSpace} = useUIStore()
     const route = useNavigate();
     const onDashboard = useLocation().pathname.includes("editor")
+    const{currentProject} = useAppStore()
 
     const handleFunctionClick = () => {
         setActiveSpace("main", "main")
+    }
+    const handleEditProjectName = () => {
+        console.log("edit project name")
     }
     return (
         <div className="h-11 drag-window rounded-t-sm flex items-center justify-between">
@@ -32,7 +37,7 @@ function Header() {
                             <div
                                 className="rounded  h-7 my-2 flex px-2  items-center bg-[#66697277] backdrop-blur-md select-none ">
                                 <span className="ml-2 text-white text-sm font-medium">
-                                    {`Title bar`}
+                                    <span onClick={handleEditProjectName}>{currentProject?.name}</span>
                                     <span className="text-[11px]">{' / '}</span>
                                     <span onClick={handleFunctionClick}
                                           className="text-blue-300 text-sm cursor-pointer">{"main"}</span>

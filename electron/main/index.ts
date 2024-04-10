@@ -7,6 +7,7 @@ import {update} from './update'
 import {spawn} from 'child_process';
 import ScanData = Bluetooth.ScanData;
 import * as child_process from "child_process";
+import {MainStorage} from "../storage/MainStorage";
 
 
 process.env.DIST_ELECTRON = join(__dirname, '../')
@@ -27,11 +28,6 @@ if (!app.requestSingleInstanceLock()) {
 }
 app.commandLine.appendSwitch("enable-web-bluetooth", 'true');
 app.commandLine.appendSwitch('enable-experimental-web-platform-features', 'true');
-
-// Remove electron security warnings
-// This warning only shows in development mode
-// Read more on https://www.electronjs.org/docs/latest/tutorial/security
-// process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
 let win: BrowserWindow | null = null
 // Here, you can also use other preload
@@ -78,8 +74,9 @@ async function createWindow() {
 
 
 app.whenReady().then(async () => {
+  new MainStorage({dataPath: app.getPath('userData')})
   await createWindow();
-    // Bluetooth
+  // Bluetooth
     // Universal Settings
     let bluetooth_state_manager = {
       mode : "none",
@@ -309,6 +306,7 @@ app.on('activate', async () => {
     await createWindow()
   }
 })
+
 
 // New window example arg: new windows url
 ipcMain.handle('open-win', async (_, arg) => {

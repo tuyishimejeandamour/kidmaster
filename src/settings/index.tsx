@@ -1,8 +1,6 @@
-import DashboardLayout from "@/dashboardLayout";
 
 export default function Setting() {
     return (
-        <DashboardLayout>
             <div className="flex flex-col px-5 items-center justify-center">
                 <div className="max-w-3xl w-full mx-auto grid gap-4 grid-cols-1">
                     <div
@@ -371,6 +369,5 @@ export default function Setting() {
                     </div>
                 </div>
             </div>
-        </DashboardLayout>
     )
 }
