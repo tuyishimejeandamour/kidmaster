@@ -52,7 +52,6 @@ export class MainStorage {
     }
 
     private readState(key: string, directory: string): StateData | null {
-        console.log('Reading state', key, directory);
         try {
             if (!directory.includes('project')) {
                 console.log('Path', path.join(this.dataPath, `${directory}/${key}.json`));
@@ -65,7 +64,7 @@ export class MainStorage {
             return JSON.parse(data);
         } catch (error) {
             console.log('Error reading state', key, error);
-            return null;
+            return [];
         }
     }
 

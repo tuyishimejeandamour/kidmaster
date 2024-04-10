@@ -43,9 +43,8 @@ export default function Project({project}: { project: ProjectStory}) {
     const router = useNavigate();
     const {activeCategory,setCurrentProject} = useAppStore();
     const handleTheClickRouter = (project: ProjectStory) => {
-        if(activeCategory !== 'history'){
+        if(activeCategory === 'history'){
             persist.getChimeData(project.id).then((data) => {
-                console.log(data)
                 const newProject = {...project};
                 newProject.chime = data as CodePersistData;
                 setCurrentProject(project);

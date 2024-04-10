@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --background-color: #18181B;
+    --text-color: #A1A1AA;
+    --card-background-color: rgba(255, 255, 255, 0.015);
+    --card-border-color: rgba(255, 255, 255, 0.1);
+    --card-box-shadow-1: rgba(0, 0, 0, 0.05);
+    --card-box-shadow-1-y: 3px;
+    --card-box-shadow-1-blur: 6px;
+    --card-box-shadow-2: rgba(0, 0, 0, 0.1);
+    --card-box-shadow-2-y: 8px;
+    --card-box-shadow-2-blur: 15px;
+    --card-label-color: #FFFFFF;
+    --card-icon-color: #D4D4D8;
+    --card-icon-background-color: rgba(255, 255, 255, 0.08);
+    --card-icon-border-color: rgba(255, 255, 255, 0.12);
+    --card-shine-opacity: 0.1;
+    --card-shine-gradient: conic-gradient(from 205deg at 50% 50%, rgba(16, 185, 129, 0) 0deg, rgba(16, 185, 129, 0.1) 90deg, rgba(16, 185, 129, 0) 180deg, rgba(16, 185, 129, 0.1) 270deg, rgba(16, 185, 129, 0) 360deg);
+}
+
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -117,7 +136,7 @@ button:hover {
 }
 
 .input-hover {
-    @apply focus:appearance-none  focus:leading-5 focus:px-1 focus:py-2 focus:flex-grow;
+    @apply focus:appearance-none focus:leading-5 focus:px-1 focus:py-2 focus:flex-grow;
 }
 
 .input-hover:focus {
@@ -163,7 +182,7 @@ button:hover {
     transform: translate(0%, 0%);
     width: 100%;
     height: 100%;
-    background: linear-gradient(0deg, rgba(40, 40, 45, 1),rgba(40, 40, 45, 0.9), rgba(40, 40, 45, 0.5));
+    background: linear-gradient(0deg, rgba(40, 40, 45, 1), rgba(40, 40, 45, 0.9), rgba(40, 40, 45, 0.5));
     border-radius: 10px;
 }
 
@@ -204,4 +223,19 @@ button:hover {
     width: 50px;
     height: 1px;
     background: linear-gradient(90deg, #64748b, transparent);
+}
+
+.projectCategoryCard:hover {
+    position: relative;
+    background: linear-gradient(71deg, #08050954, #1a171c46, #08050954);
+    background-clip: padding-box;
+    z-index: 1;
+    transition: background 0.5s ease-in-out  
+}
+
+.activeBackground {
+    background: linear-gradient(71deg, #080509, #1a171c, #080509);
+    background-clip: padding-box;
+    transition: background 0.5s ease-in-out;
+    color:white;
 }
