@@ -35,6 +35,6 @@ export const DelayNodeDefinition: CodeNodeDefinition = {
     debug: ({node, getConnectionInput, getConnectionExecOutput}) => {
         const ms = getConnectionInput('ms') ?? node.data?.ms ?? 0;
 
-        return `console.log('delay ${ms} milliseconds')`;
+        return `console.log('delay ${ms} milliseconds');`;
     }
 };

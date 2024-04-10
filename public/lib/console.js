@@ -48,7 +48,7 @@ function _jj_code_genOutput(str, rest, type) {
         } else {
             objstr = "<span class=\"log-str\">".concat(str.message ? str.message : str.toString(), "</span>");
         }
-
+    
         output = "<div class=\"log-wrap\"><span class=\"log-type__".concat(type, "\">").concat(_jj_code_time(), " [ ").concat(type, " ]:</span><span class=\"log-str\">").concat(objstr, "</span></div>");
     }
 

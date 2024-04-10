@@ -43,7 +43,7 @@ export class CodeCompiler {
         codeText += this.generateCodeFromNode(this.getExecNext(begin.id));
 
         codeText = this.generatePrepareCode() + codeText; // 在头部追加 prepare code
-
+        console.log(codeText)
         return codeText;
     }
 

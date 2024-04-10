@@ -15,9 +15,9 @@ const ConsoleCommands: React.FC = () => {
 
         window.addEventListener("message", function (data) {
             if (data.data && ["log", "error", "info", 'warn'].includes(data.data.type)) {
-                let console = document.getElementById("console") as HTMLElement;
-                console.appendChild(createNode(data.data.data));
-                console.scrollTop = console?.scrollHeight as number;
+                let consoleEl = document.getElementById("console") as HTMLElement;
+                consoleEl.appendChild(createNode(data.data.data));
+                consoleEl.scrollTop = consoleEl?.scrollHeight as number;
             }
         });
         return () => {

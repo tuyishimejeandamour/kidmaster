@@ -257,8 +257,15 @@ export default function SelectedProject() {
                         </div>
                         <p className={"text-white text-md mt-2"}>Description</p>
                         <textarea
-                            className={"bg-[#2b303b] px-1 py-[6px] text-ellipsis mt-2 text-[#d5ced9] text-[12px] w-full border relative block p-0 rounded-sm border-[#444a57]"}
-                            placeholder='Please enter ...'/>
+                            onChange={(e) => {
+                                setProjectData({...projectData, description: e.target.value})
+                            }}
+                            value={projectData.description}
+                            onKeyDown={(e) => e.stopPropagation()}
+                            className={"bg-[#2b303b] px-1 py-[6px] h-24 text-ellipsis mt-2 text-[#d5ced9] text-[12px] w-full border relative block p-0 rounded-sm border-[#444a57]"}
+                            placeholder='Please enter ...'
+                            
+                            />
                     </div>
                     <div className="flex items-center justify-end mt-8">
                         <button

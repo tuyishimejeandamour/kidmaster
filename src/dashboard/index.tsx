@@ -62,6 +62,7 @@ export default function DashboardLayout() {
     const loadHistory = () => {
         persist.loadHistory().then((res) => {
             useAppStore.getState().setProjects(res as any)
+            setActiveCategory('history')
 
         })
     }
