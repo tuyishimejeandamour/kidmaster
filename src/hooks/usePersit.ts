@@ -41,7 +41,6 @@ export function usePersist() {
         if (fileHandle) {
             await writeFile(fileHandle, JSON.stringify(persist.getCurrentData()));
         }
-        console.log(persist.getCurrentData());
         persist.saveIntoLocalStorage();
         Message.success('saved successful');
     });

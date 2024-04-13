@@ -4,9 +4,9 @@ import path from 'node:path';
 
 interface StateOptions {
     path?: string;
-    cypher?: string;
-    chime?: string;
-    project?: string;
+    cypher?: boolean;
+    chime?: boolean;
+    project?: boolean;
 }
 
 interface InputData {
@@ -56,7 +56,6 @@ export class MainStorage {
             if (!directory.includes('project')) {
                 console.log('Path', path.join(this.dataPath, `${directory}/${key}.json`));
                     const data = fs.readFileSync(path.join(this.dataPath, `${directory}/${key}.json`), 'utf8');
-                    console.log('Data', data);
                     return JSON.parse(data);
 
             }
@@ -85,6 +84,7 @@ export class MainStorage {
             } else {
                 fetchedProjects = [project];
             }
+
             fs.writeFileSync(path.join(this.dataPath, `project.json`), JSON.stringify(fetchedProjects), 'utf8');
             let pathJoint = this.dataPath + `/` + `chime`;
             fs.writeFileSync(path.join(pathJoint, `${data.data.id}.json`), JSON.stringify(toBeSavedData), 'utf8');

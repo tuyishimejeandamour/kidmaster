@@ -29,7 +29,7 @@ export default function SelectedProject() {
     const handleSaveProject = () => {
 
         PersistStorage.setState(projectData.id, {
-            options: {project: "project"},
+            options: {project: true},
             data: projectData
         });
         setCurrentProject(projectData);

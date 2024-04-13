@@ -4,9 +4,9 @@ type StateData = Record<string, any>;
 
 interface StateOptions{
     path?:string;
-    cypher?:string;
-    chime?:string;
-    project?:string;
+    cypher?:boolean;
+    chime?:boolean;
+    project?:boolean;
 }
 interface InputData {
     options: StateOptions
@@ -27,6 +27,7 @@ class RenderStorage {
         this.states[key] = data;
         ipcRenderer.invoke('update-state', key, data).catch(console.error);
     }
+
 
     public onStateUpdate(callback: Function): void {
         ipcRenderer.on('state-updated', (event, key, data) => {

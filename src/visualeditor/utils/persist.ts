@@ -49,7 +49,6 @@ export function load(data: CodePersistData) {
     if (!data.modules.entry) {
         throw new Error('Not found entry module');
     }
-
     useNodeStore.setState({
         nodeMap: data.modules.entry.nodeMap,
     });
@@ -62,7 +61,13 @@ export function load(data: CodePersistData) {
 }
 
 export function saveIntoLocalStorage() {
-    window.localStorage.setItem('codeData', JSON.stringify(getCurrentData()));
+    const currentProject = useAppStore.getState().currentProject;
+    if (!currentProject) {
+        window.localStorage.setItem('codeData', JSON.stringify(getCurrentData()));
+    }else {
+
+        PersistStorage.setState(currentProject.id,{options:{chime:true},data:getCurrentData()})
+    }
 }
 
 export function loadFromLocalStorage() {
@@ -70,7 +75,7 @@ export function loadFromLocalStorage() {
     if (!data) {
         throw new Error('Cannot load info from localStorage');
     }
-    console.log()
+    console.log(data)
     load(data);
 }
 

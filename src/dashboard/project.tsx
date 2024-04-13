@@ -3,7 +3,7 @@ import {motion} from "framer-motion";
 import {useNavigate} from "react-router-dom";
 import {ProjectStory, useAppStore} from "@/store/app";
 import { persist } from '@/visualeditor';
-import {CodePersistData} from "@/visualeditor/utils/persist";
+import {CodePersistData, load} from "@/visualeditor/utils/persist";
 
 interface projectProps {
     name: string;
@@ -47,6 +47,7 @@ export default function Project({project}: { project: ProjectStory}) {
             persist.getChimeData(project.id).then((data) => {
                 const newProject = {...project};
                 newProject.chime = data as CodePersistData;
+                load(data as CodePersistData);
                 setCurrentProject(project);
                 router(`/editor`)
             })

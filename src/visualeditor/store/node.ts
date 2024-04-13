@@ -93,6 +93,7 @@ export interface CodeNodeDefinition {
 
 interface NodeState {
     nodeMap: Record<string, CodeNode>;
+    currentId: string;
     nodeDefinition: Record<string, CodeNodeDefinition>;
 
     regNode: (definition: CodeNodeDefinition) => void;
@@ -113,6 +114,7 @@ interface NodeState {
     setNodeData: (nodeId: string, key: string, value: unknown) => void;
     removeNode: (nodeId: string) => void;
     resetNode: () => void;
+    getId(): string;
 }
 
 const buildDefaultNodeMap = () =>
@@ -126,7 +128,7 @@ const buildDefaultNodeMap = () =>
             },
         },
         log: {
-            id: generateUUID(),
+            id: 'log',
             name: LogNodeDefinition.name,
             position: {
                 x: 200,
@@ -143,6 +145,7 @@ export const useNodeStore = create<NodeState>()(
     immer((set, get) => ({
         nodeMap: buildDefaultNodeMap(),
         nodeDefinition: {},
+        currentId: '0',
         regNode: (definition: CodeNodeDefinition) => {
             set((state) => {
                 if (state.nodeDefinition[definition.name]) {
@@ -202,10 +205,10 @@ export const useNodeStore = create<NodeState>()(
         createNode: (nodeName, position, data) => {
             set((state) => {
                 const activeSpace = useUIStore.getState().activeSpace
-                let id = generateUUID();
+                let id = get().getId();
                 if (nodeName.includes("group")) {
                     id = `group_${nodeName.split("_")[1]}_${id}`
-                    const another = `$gb_${generateUUID()}`
+                    const another = `$gb_${id}`
                     state.nodeMap[another] = {
                         id: another,
                         name: "groupBegin",
@@ -262,6 +265,7 @@ export const useNodeStore = create<NodeState>()(
             }
 
             set((state) => {
+                //TODO: revise this logic to remove all recursive nodes
                 if (state.nodeMap[nodeId].space !== "main") {
                     values(state.nodeMap).map((node) => {
                         if (node.space === nodeId) {
@@ -301,6 +305,13 @@ export const useNodeStore = create<NodeState>()(
             useConnectionStore.getState().connections.forEach((item) => {
                 useConnectionStore.getState().removeConnection(item.id);
             });
+        },
+        getId: () => {
+            const id = get().currentId;
+            set((state) => {
+                state.currentId = (Number(id) + 1).toString();
+            });
+            return id;
         },
 
     }))
