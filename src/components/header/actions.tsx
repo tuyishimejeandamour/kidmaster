@@ -3,7 +3,7 @@ import {useMemoizedFn} from 'ahooks';
 import {usePersist} from '@/hooks/usePersit';
 import {useState} from "react";
 import {ipcRenderer} from "electron";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import {DebuggerCompiler} from "@/visualeditor/code/debuger";
 
 function Actions() {

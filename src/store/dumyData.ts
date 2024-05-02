@@ -1,4 +1,4 @@
-import { ProjectStory } from "./app";
+import {ProjectStory} from "./app";
 
 export const projectdummyData = [
     {
@@ -52,7 +52,7 @@ export const projectdummyData = [
         },
         image: "portfolio-redesign.jpg",
         link: "https://example.com/portfolio-redesign"
-       
+
 
     },
     {

@@ -1,141 +1,141 @@
-import { useStage } from '../../hooks/useStage';
-import { useStageStore } from '../../store/stage';
-import { useUIStore } from '../../store/ui';
-import { SHAPE_NAME_OF_NODE } from '../../utils/consts';
+import {useStage} from '../../hooks/useStage';
+import {useStageStore} from '@/visualeditor';
+import {useUIStore} from '../../store/ui';
+import {SHAPE_NAME_OF_NODE} from '../../utils/consts';
 import Konva from 'konva';
-import React, { useRef, useState } from 'react';
-import { Layer, Rect } from 'react-konva';
+import React, {useRef, useState} from 'react';
+import {Layer, Rect} from 'react-konva';
 
 export const SelectionLayer: React.FC = React.memo(() => {
-  const [rect, setRect] = useState({ x1: 0, y1: 0, x2: 0, y2: 0 });
-  const [visible, setVisible] = useState(false);
-  const selectionRef = useRef<Konva.Rect>(null);
+    const [rect, setRect] = useState({x1: 0, y1: 0, x2: 0, y2: 0});
+    const [visible, setVisible] = useState(false);
+    const selectionRef = useRef<Konva.Rect>(null);
 
-  useStage((stage) => {
-    let isSelecting = false;
+    useStage((stage) => {
+        let isSelecting = false;
 
-    const handleMouseDown = (
-      e: Konva.KonvaEventObject<MouseEvent | TouchEvent>
-    ) => {
-      // do nothing if we mousedown on any shape
-      if (e.target !== stage) {
-        return;
-      }
+        const handleMouseDown = (
+            e: Konva.KonvaEventObject<MouseEvent | TouchEvent>
+        ) => {
+            // do nothing if we mousedown on any shape
+            if (e.target !== stage) {
+                return;
+            }
 
-      if (stage.draggable()) {
-        return;
-      }
+            if (stage.draggable()) {
+                return;
+            }
 
-      const pointerPosition = useStageStore
-        .getState()
-        .getRelativePointerPosition();
+            const pointerPosition = useStageStore
+                .getState()
+                .getRelativePointerPosition();
 
-      if (!pointerPosition) {
-        return;
-      }
+            if (!pointerPosition) {
+                return;
+            }
 
-      setRect({
-        x1: pointerPosition.x,
-        y1: pointerPosition.y,
-        x2: pointerPosition.x,
-        y2: pointerPosition.y,
-      });
+            setRect({
+                x1: pointerPosition.x,
+                y1: pointerPosition.y,
+                x2: pointerPosition.x,
+                y2: pointerPosition.y,
+            });
 
-      setVisible(true);
-      isSelecting = true;
-    };
+            setVisible(true);
+            isSelecting = true;
+        };
 
-    const handleMouseMove = (
-      e: Konva.KonvaEventObject<MouseEvent | TouchEvent>
-    ) => {
-      // do nothing if we didn't start selection
-      if (!isSelecting) {
-        return;
-      }
-      e.evt.preventDefault();
+        const handleMouseMove = (
+            e: Konva.KonvaEventObject<MouseEvent | TouchEvent>
+        ) => {
+            // do nothing if we didn't start selection
+            if (!isSelecting) {
+                return;
+            }
+            e.evt.preventDefault();
 
-      // const pointerPosition = stage.getPointerPosition();
-      const pointerPosition = useStageStore
-        .getState()
-        .getRelativePointerPosition();
-      if (!pointerPosition) {
-        return;
-      }
+            // const pointerPosition = stage.getPointerPosition();
+            const pointerPosition = useStageStore
+                .getState()
+                .getRelativePointerPosition();
+            if (!pointerPosition) {
+                return;
+            }
 
-      setRect((state) => ({
-        ...state,
-        x2: pointerPosition.x,
-        y2: pointerPosition.y,
-      }));
-    };
+            setRect((state) => ({
+                ...state,
+                x2: pointerPosition.x,
+                y2: pointerPosition.y,
+            }));
+        };
 
-    const handleMouseUp = (
-      e: Konva.KonvaEventObject<MouseEvent | TouchEvent>
-    ) => {
-      // do nothing if we didn't start selection
-      if (!isSelecting) {
-        return;
-      }
+        const handleMouseUp = (
+            e: Konva.KonvaEventObject<MouseEvent | TouchEvent>
+        ) => {
+            // do nothing if we didn't start selection
+            if (!isSelecting) {
+                return;
+            }
 
-      // update visibility in timeout, so we can check it in click event
-      setTimeout(() => {
-        setVisible(false);
-        isSelecting = false;
-      });
+            // update visibility in timeout, so we can check it in click event
+            setTimeout(() => {
+                setVisible(false);
+                isSelecting = false;
+            });
 
-      const shapes = stage.find(`.${SHAPE_NAME_OF_NODE}`);
-      const box = selectionRef.current?.getClientRect();
-      if (!box) {
-        return;
-      }
+            const shapes = stage.find(`.${SHAPE_NAME_OF_NODE}`);
+            const box = selectionRef.current?.getClientRect();
+            if (!box) {
+                return;
+            }
 
-      const selected = shapes.filter((shape) => {
-        const intersected = Konva.Util.haveIntersection(
-          box,
-          shape.getClientRect({
-            skipShadow: true,
-            skipStroke: true,
-          })
-        );
-        return intersected;
-      });
+            const selected = shapes.filter((shape) => {
+                const intersected = Konva.Util.haveIntersection(
+                    box,
+                    shape.getClientRect({
+                        skipShadow: true,
+                        skipStroke: true,
+                    })
+                );
+                return intersected;
+            });
 
-      useUIStore
-        .getState()
-        .switchSelectNodes(
-          selected
-            .filter((node) => Boolean(node.attrs['nodeId']))
-            .map((node) => node.attrs['nodeId'])
-        );
-    };
+            useUIStore
+                .getState()
+                .switchSelectNodes(
+                    selected
+                        .filter((node) => Boolean(node.attrs['nodeId']))
+                        .map((node) => node.attrs['nodeId'])
+                );
+        };
 
-    stage.on('mousedown touchstart', handleMouseDown);
-    stage.on('mousemove touchmove', handleMouseMove);
-    stage.on('mouseup touchend', handleMouseUp);
-    stage.on('mouseleave touchcancel', handleMouseUp);
+        stage.on('mousedown touchstart', handleMouseDown);
+        stage.on('mousemove touchmove', handleMouseMove);
+        stage.on('mouseup touchend', handleMouseUp);
+        stage.on('mouseleave touchcancel', handleMouseUp);
 
-    return () => {
-      stage.off('mousedown touchstart', handleMouseDown);
-      stage.off('mousemove touchmove', handleMouseMove);
-      stage.off('mouseup touchend', handleMouseUp);
-      stage.off('mouseleave touchcancel', handleMouseUp);
-    };
-  });
+        return () => {
+            stage.off('mousedown touchstart', handleMouseDown);
+            stage.off('mousemove touchmove', handleMouseMove);
+            stage.off('mouseup touchend', handleMouseUp);
+            stage.off('mouseleave touchcancel', handleMouseUp);
+        };
+    });
 
-  return (
-    <Layer>
-      <Rect
-        ref={selectionRef}
-        stroke="#0096ff5e"
-        strokeWidth={1}
-        fill="#0096ff2e"
-        visible={visible}
-        x={Math.min(rect.x1, rect.x2)}
-        y={Math.min(rect.y1, rect.y2)}
-        width={Math.abs(rect.x2 - rect.x1)}
-        height={Math.abs(rect.y2 - rect.y1)}
-      />
-    </Layer>
-  );
+    return (
+        <Layer>
+            <Rect
+                ref={selectionRef}
+                stroke="#0096ff5e"
+                strokeWidth={1}
+                fill="#0096ff2e"
+                visible={visible}
+                x={Math.min(rect.x1, rect.x2)}
+                y={Math.min(rect.y1, rect.y2)}
+                width={Math.abs(rect.x2 - rect.x1)}
+                height={Math.abs(rect.y2 - rect.y1)}
+            />
+        </Layer>
+    );
 });
 SelectionLayer.displayName = 'SelectionLayer';

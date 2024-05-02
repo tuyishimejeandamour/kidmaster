@@ -17,34 +17,33 @@ export function openNewProjectModal() {
 
 export const NewProjectModal: React.FC = React.memo(() => {
 
-    const data:ProjectCategory[] = [
+    const data: ProjectCategory[] = [
         {
             "id": "1",
             "name": "Project 1",
-            "image":"../../../public/assests/bot1.png",
+            "image": "../../../public/assests/bot1.png",
             "color": "bg-orange-500"
         },
         {
             "id": "2",
             "name": "Project 2",
-            "image":"../../../public/assests/bot2.png",
+            "image": "../../../public/assests/bot2.png",
             "color": "bg-purple-500"
         },
         {
             "id": "3",
             "name": "Project 3",
-            "image":"../../../public/assests/bot3.png",
+            "image": "../../../public/assests/bot3.png",
             "color": "bg-red-500"
         },
         {
             "id": "4",
             "name": "Project 4",
-            "image":"../../../public/assests/bot4.png",
+            "image": "../../../public/assests/bot4.png",
             "color": "bg-teal-500"
 
         }
     ];
-
 
 
     return (

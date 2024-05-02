@@ -6,7 +6,8 @@ export default function StoryCategory({info}: { info: ProjectCategory }) {
 
     const navigation = useNavigate();
     return (
-        <div onClick={()=>navigation('/project')} className={`flex-shrink-0 m-6 md:m-2 md:w-40 my-1 h-36 hover:cursor-pointer relative overflow-hidden ${info.color} rounded-lg max-w-xs shadow-lg`}>
+        <div onClick={() => navigation('/project')}
+             className={`flex-shrink-0 m-6 md:m-2 md:w-40 my-1 h-36 hover:cursor-pointer relative overflow-hidden ${info.color} rounded-lg max-w-xs shadow-lg`}>
             <svg className="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
                  style={{transform: "scale(1.5)", opacity: 0.1}}>
                 <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"

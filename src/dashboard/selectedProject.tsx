@@ -76,10 +76,10 @@ export default function SelectedProject() {
                                     <div
                                         className="absolute right-full top-5 origin-right -scale-x-100 aspect-[969/887] w-full">
 
-                                            <img alt="" width="1938" height="1774" decoding="async"
-                                                 data-nimg="1" className="absolute inset-0 h-full w-full"
-                                                 src="https://clerk.com/_next/static/media/circuit-lines@2xl.ee1ad3dd.webp"
-                                                 style={{color: "transparent"}}/>
+                                        <img alt="" width="1938" height="1774" decoding="async"
+                                             data-nimg="1" className="absolute inset-0 h-full w-full"
+                                             src="https://clerk.com/_next/static/media/circuit-lines@2xl.ee1ad3dd.webp"
+                                             style={{color: "transparent"}}/>
                                     </div>
                                 </div>
                                 <section className="antialiased h-full w-full flex items-center justify-center">
@@ -264,8 +264,8 @@ export default function SelectedProject() {
                             onKeyDown={(e) => e.stopPropagation()}
                             className={"bg-[#2b303b] px-1 py-[6px] h-24 text-ellipsis mt-2 text-[#d5ced9] text-[12px] w-full border relative block p-0 rounded-sm border-[#444a57]"}
                             placeholder='Please enter ...'
-                            
-                            />
+
+                        />
                     </div>
                     <div className="flex items-center justify-end mt-8">
                         <button

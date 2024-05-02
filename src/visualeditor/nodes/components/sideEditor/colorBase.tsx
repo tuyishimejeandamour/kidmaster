@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {CodeNodeDefinition} from "@/visualeditor";
 import {SketchPicker} from "react-color";
-import {toast} from "react-toastify";
 
 
 export interface ColorInputProps {

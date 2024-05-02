@@ -10,7 +10,8 @@ interface Props {
     }>
 
 }
-export default function Comment({comment}: {comment:Props}) {
+
+export default function Comment({comment}: { comment: Props }) {
     return (
         <div className="flex">
             <div className="flex-shrink-0 mr-3">
@@ -37,5 +38,5 @@ export default function Comment({comment}: {comment:Props}) {
                 </div>
             </div>
         </div>
-)
+    )
 }

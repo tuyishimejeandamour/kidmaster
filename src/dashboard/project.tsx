@@ -2,7 +2,7 @@ import React from 'react'
 import {motion} from "framer-motion";
 import {useNavigate} from "react-router-dom";
 import {ProjectStory, useAppStore} from "@/store/app";
-import { persist } from '@/visualeditor';
+import {persist} from '@/visualeditor';
 import {CodePersistData, load} from "@/visualeditor/utils/persist";
 
 interface projectProps {
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const title = {
-    initial: { y: -20, opacity: 0 },
+    initial: {y: -20, opacity: 0},
     animate: {
         y: 0,
         opacity: 1,
@@ -28,7 +28,7 @@ const title = {
 };
 
 const robot = {
-    initial: { y: -20, opacity: 0 },
+    initial: {y: -20, opacity: 0},
     animate: {
         y: 0,
         opacity: 1,
@@ -39,11 +39,11 @@ const robot = {
     },
 };
 
-export default function Project({project}: { project: ProjectStory}) {
+export default function Project({project}: { project: ProjectStory }) {
     const router = useNavigate();
-    const {activeCategory,setCurrentProject} = useAppStore();
+    const {activeCategory, setCurrentProject} = useAppStore();
     const handleTheClickRouter = (project: ProjectStory) => {
-        if(activeCategory === 'history'){
+        if (activeCategory === 'history') {
             persist.getChimeData(project.id).then((data) => {
                 const newProject = {...project};
                 newProject.chime = data as CodePersistData;
@@ -51,7 +51,7 @@ export default function Project({project}: { project: ProjectStory}) {
                 setCurrentProject(project);
                 router(`/editor`)
             })
-        }else {
+        } else {
             router(`/${project.id}`)
         }
     }
@@ -80,7 +80,9 @@ export default function Project({project}: { project: ProjectStory}) {
                         {project.description}
                     </div>
                     <div
-                        onClick={() => {handleTheClickRouter(project)}}
+                        onClick={() => {
+                            handleTheClickRouter(project)
+                        }}
                         className="text-sm group text-blue-300 border border-blue-600/90 font-medium inline-flex px-3 py-3 rounded-full hover:bg-blue-600/50 hover:[>text-white] hover:cursor-pointer"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
@@ -96,7 +98,7 @@ export default function Project({project}: { project: ProjectStory}) {
                 className="main-section bottom-l absolute w-[1px] h-[1px] bottom-[-1px] left-[-1px]"></span><span
             className="main-section bottom-l absolute w-[1px] h-[1px] bottom-[-1px] right-[-1px]"></span><span
             className="main-section bottom-l absolute w-[1px] h-[1px] top-[-1px] right-[-1px]"></span><span
-               className="main-section bottom-l absolute w-[1px] h-[1px] top-[-1px] left-[-1px]"></span>
+            className="main-section bottom-l absolute w-[1px] h-[1px] top-[-1px] left-[-1px]"></span>
         </div>
     )
 }

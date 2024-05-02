@@ -8,7 +8,6 @@ import {LogNodeDefinition} from '../nodes/definitions/core/log';
 import {BEGIN_NODE_ID} from '../utils/consts';
 import {useUIStore} from './ui';
 import React from "react";
-import generateUUID from "@/visualeditor/utils/uuidGenerator";
 
 export type CodeNodeType = 'begin' | 'return' | 'function' | 'logic' | 'call' | 'grouping';
 
@@ -114,6 +113,7 @@ interface NodeState {
     setNodeData: (nodeId: string, key: string, value: unknown) => void;
     removeNode: (nodeId: string) => void;
     resetNode: () => void;
+
     getId(): string;
 }
 

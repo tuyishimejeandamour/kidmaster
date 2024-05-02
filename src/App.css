@@ -121,7 +121,7 @@ button:hover {
     padding: 0 !important;
 }
 
-.create-project-modal{
+.create-project-modal {
     @apply !w-[80vw] max-w-[90vw] max-h-[calc(100vh-60px)] !align-middle !p-0 !bg-[rgba(12,34,60,1)];
     box-shadow: -5px 5px rgba(170, 171, 170, 0.4), -10px 10px rgba(170, 171, 170, 0.3), -15px 15px rgba(170, 171, 170, 0.2), -20px 20px rgba(170, 171, 170, 0.1), -25px 25px rgba(170, 171, 170, 0.05) !important;
 
@@ -230,12 +230,12 @@ button:hover {
     background: linear-gradient(71deg, #08050954, #1a171c46, #08050954);
     background-clip: padding-box;
     z-index: 1;
-    transition: background 0.5s ease-in-out  
+    transition: background 0.5s ease-in-out
 }
 
 .activeBackground {
     background: linear-gradient(71deg, #080509, #1a171c, #080509);
     background-clip: padding-box;
     transition: background 0.5s ease-in-out;
-    color:white;
+    color: white;
 }
