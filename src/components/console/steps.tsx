@@ -1,4 +1,4 @@
-import { useAppStore } from '@/store/app';
+import {useAppStore} from '@/store/app';
 import './step.css';
 import React, {useEffect, useState} from "react";
 
@@ -23,7 +23,7 @@ const Steps: React.FC<{ className: string }> = (props) => {
 
                 setCurrentStep((prevStep) => (prevStep + 1) % steps.length);
             });
-            
+
         };
 
         const intervalId = setInterval(animateProgress, 2000);
@@ -33,7 +33,8 @@ const Steps: React.FC<{ className: string }> = (props) => {
 
     return (
         <div className="outer">
-            <span className="Prompt__user">@{currentProject?.name}:</span><span className="Prompt__location">~</span><span
+            <span className="Prompt__user">@{currentProject?.name}:</span><span
+            className="Prompt__location">~</span><span
             className="Prompt__dollar">$</span>
             <div className="progress dark">
                 <div className="left">

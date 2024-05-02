@@ -1,8 +1,8 @@
 import {useBluetoothStore} from "@/store/bluetoothStore";
 
-export async function asyncForEach(array:any[], callback:Function) {
+export async function asyncForEach(array: any[], callback: Function) {
 
-    for (let index = 0; index < array.length; index++){
+    for (let index = 0; index < array.length; index++) {
         await callback(array[index], index, array);
     }
 }
@@ -34,15 +34,15 @@ export async function asyncForEach(array:any[], callback:Function) {
 // }
 
 
-export function getBulbPowerState(power_state:any,doUpdateUI: boolean){
-    const { pairedDevice, setPairedDevice,defaultBot } = useBluetoothStore();
+export function getBulbPowerState(power_state: any, doUpdateUI: boolean) {
+    const {pairedDevice, setPairedDevice, defaultBot} = useBluetoothStore();
 
-    if (!(pairedDevice.deviceId)){
+    if (!(pairedDevice.deviceId)) {
         console.log("Failed to get bulb power state - no device paired");
         return
     }
 
-    if (typeof pairedDevice.characteristic_map.get(defaultBot.BOT_POWER_CHARACTERISTIC_UUID) == "undefined"){
+    if (typeof pairedDevice.characteristic_map.get(defaultBot.BOT_POWER_CHARACTERISTIC_UUID) == "undefined") {
         console.log("Did not find bluetooth characteristic to get power state");
         return;
     }
@@ -56,30 +56,29 @@ export function getBulbPowerState(power_state:any,doUpdateUI: boolean){
         console.log("Bulb power state -> ", state, byteArray);
 
 
-
-        if (doUpdateUI){
+        if (doUpdateUI) {
             power_state.set(state);
         }
 
         return state;
 
-    }).catch((e:string) => {
+    }).catch((e: string) => {
         console.log(e);
     })
 
 
 }
 
-function getByteArrayFromDataView(dataView:ArrayBuffer, bufferType: string){
+function getByteArrayFromDataView(dataView: ArrayBuffer, bufferType: string) {
 
-    if (typeof bufferType == "undefined"){
+    if (typeof bufferType == "undefined") {
         bufferType = "getUint8";
     }
 
     let byteArray = [];
     let bufferSize = dataView.byteLength;
 
-    for (let i = 0; i < bufferSize; i++){
+    for (let i = 0; i < bufferSize; i++) {
         // @ts-ignore
         byteArray[i] = dataView[bufferType](i);
     }

@@ -2,12 +2,13 @@ import {ipcRenderer} from 'electron';
 
 type StateData = Record<string, any>;
 
-interface StateOptions{
-    path?:string;
-    cypher?:boolean;
-    chime?:boolean;
-    project?:boolean;
+interface StateOptions {
+    path?: string;
+    cypher?: boolean;
+    chime?: boolean;
+    project?: boolean;
 }
+
 interface InputData {
     options: StateOptions
     data: Record<string, any>;
@@ -37,8 +38,8 @@ class RenderStorage {
     }
 
 
-    private  requestState(key: string,destination?:string):Promise<StateData>  {
-        return  ipcRenderer.invoke('get-state', key,destination);
+    private requestState(key: string, destination?: string): Promise<StateData> {
+        return ipcRenderer.invoke('get-state', key, destination);
     }
 }
 

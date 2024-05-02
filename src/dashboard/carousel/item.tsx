@@ -1,6 +1,6 @@
-import { motion } from "framer-motion"
+import {motion} from "framer-motion"
 
-export  default  function CarouselItem({ index }:{index:number}) {
+export default function CarouselItem({index}: { index: number }) {
 
     const itemVariants = {
         1: {
@@ -34,7 +34,7 @@ export  default  function CarouselItem({ index }:{index:number}) {
                 duration: 0.5
             }}
         >
-            <Content />
+            <Content/>
         </motion.div>
     )
 }

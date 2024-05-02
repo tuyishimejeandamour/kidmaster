@@ -4,8 +4,8 @@ import CarouselItem from "@/dashboard/carousel/item";
 export default function Carousel() {
 
     const [items] = useState([
-        { index: 1 },
-        { index: 2 },
+        {index: 1},
+        {index: 2},
 
     ])
 

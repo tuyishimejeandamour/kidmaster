@@ -6,7 +6,7 @@ import {PersistStorage} from "@/visualeditor/utils/StorageRender";
 import {useAppStore} from "@/store/app";
 
 export function getChimeData(id: string) {
-return PersistStorage.getState(id, 'chime')
+    return PersistStorage.getState(id, 'chime')
 }
 
 export async function loadHistory() {
@@ -64,9 +64,9 @@ export function saveIntoLocalStorage() {
     const currentProject = useAppStore.getState().currentProject;
     if (!currentProject) {
         window.localStorage.setItem('codeData', JSON.stringify(getCurrentData()));
-    }else {
+    } else {
 
-        PersistStorage.setState(currentProject.id,{options:{chime:true},data:getCurrentData()})
+        PersistStorage.setState(currentProject.id, {options: {chime: true}, data: getCurrentData()})
     }
 }
 

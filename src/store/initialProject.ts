@@ -38,14 +38,12 @@ export const ChimeDefault = {
                     "toNodePinName": "$pin_exec_in"
                 }
             ],
-            "variable": {
-
-            }
+            "variable": {}
         }
     }
 } as CodePersistData;
 
-export  const newProject = {
+export const newProject = {
     id: generateUUID(),
     name: "new project",
     description: "create for testing",
